@@ -1,0 +1,67 @@
+.home-all-content {
+  flex: 1;
+}
+
+.home-container {
+  width: 1052px;
+  margin: 30px auto;
+  padding: 0 30px;
+}
+
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-user-info-container {
+  display: flex;
+  align-items: center;
+}
+
+.home-profile-picture {
+  width: 30px;
+}
+
+.home-username {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 21px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.country-flag {
+  display: inline-block;
+  background-image: url(../assets/flags-16.91e66339.png);
+  height: 12px;
+  width: 16px;
+  margin-left: 10px;
+}
+.home-navigation-option-container {
+  text-decoration: none;
+  color: #9e9d9c;
+}
+.home-navigation-option-container:hover {
+  color: #ffffff;
+}
+
+.home-navigation-option-container::before {
+  width: 28px;
+  height: 28px;
+  font-size: 28px;
+  font-family: Icons;
+  margin-left: 10px;
+}
+.home-navigation-option-container.settings::before {
+  content: "\00B7";
+}
+.home-navigation-option-container.messages::before {
+  content: "\0079";
+}
+.home-navigation-option-container.play::before {
+  content: "\1F18";
+}
+.home-navigation-option-container.friends::before {
+  content: "\006E";
+}

@@ -1,0 +1,44 @@
+.main {
+  color: #ffffff;
+  height: 100vh;
+  background-color: #312e2b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.missing-modal {
+  background-color: #262421;
+  padding: 20px 100px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.missing-title {
+  display: block;
+  font-size: 36px;
+}
+.missing-separator {
+  height: 1px;
+  width: 100%;
+  background-color: #494745;
+  margin: 15px 0;
+}
+
+.missing-button {
+  font-size: 18px;
+  color: #9e9d9c;
+  background-color: #494745;
+  border: none;
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.missing-img {
+  width: 400px;
+  margin-top: 20px;
+}

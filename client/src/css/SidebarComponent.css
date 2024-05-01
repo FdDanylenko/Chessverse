@@ -1,0 +1,120 @@
+.sidebar {
+  width: 165px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  left: 0;
+  background-color: #262522;
+}
+.sidebar.collapsed {
+  width: fit-content;
+}
+
+.settings-container {
+  color: #9e9d9c;
+  margin-bottom: 20px;
+}
+
+.sidebar-settings-option-icon::before {
+  display: inline-block;
+  font-family: Icons;
+  font-size: 24px;
+  width: 45px;
+  text-align: center;
+}
+
+.sidebar-settings-option-container:hover {
+  background-color: #21201e;
+  color: #ffffff;
+}
+
+.sidebar-settings-option-icon.theme::before {
+  content: "\1F3D";
+}
+.sidebar-settings-option-icon.collapse::before {
+  content: "\03E0";
+}
+.sidebar-settings-option-icon.collapsed::before {
+  content: "\03E1";
+}
+.sidebar-settings-option-icon.settings::before {
+  content: "\00B7";
+}
+.sidebar-settings-option-icon.logout::before {
+  content: "\00D7";
+}
+.sidebar-settings-option-icon.help::before {
+  content: "\0028";
+}
+
+.sidebar-settings-option-body-collapsed {
+  display: none;
+}
+.navigation-container {
+  padding: 10px 0;
+}
+
+.navigation-container span {
+  display: inline-block;
+  font-size: 21px;
+  line-height: 30px;
+  font-weight: 600;
+}
+.navigation-container span.header {
+  margin: 0 10px;
+}
+.navigation-container span.collapsed {
+  display: none;
+  margin-right: 0px;
+}
+.navigation-header {
+  width: 30px;
+  margin-left: 10px;
+}
+
+.navigation-option-container {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  padding: 5px 10px;
+  color: #ffffff;
+  text-decoration: none;
+}
+.navigation-option-container:hover {
+  background-color: #21201e;
+}
+
+.navigation-option-body {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 10px;
+}
+.navigation-option-body.collapsed {
+  display: none;
+}
+
+.navigation-option-icon {
+  /* background-color: #9551e4; */
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-image: url(../assets/nav.0d2c89b2.png);
+}
+.navigation-option-icon.play {
+  background-position-x: -21px;
+  background-position-y: -78px;
+}
+.navigation-option-icon.puzzles {
+  background-position-x: -23px;
+  background-position-y: -113px;
+}
+.navigation-option-icon.learn {
+  background-position-x: -23px;
+  background-position-y: -151px;
+}
+.navigation-option-icon.more {
+  background-position-x: -22px;
+  background-position-y: -262px;
+}
