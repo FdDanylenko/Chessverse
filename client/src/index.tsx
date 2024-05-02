@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import { AuthContextProvider } from "./contexts/AuthContext";
 import { SettingsContextProvider } from "./contexts/SettingsContext";
+import { GameDataProvider } from "./components/gameComponent/contexts/gameContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -14,11 +15,13 @@ root.render(
   <React.StrictMode>
     <SettingsContextProvider>
       <AuthContextProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/*" element={<App />} />
-          </Routes>
-        </BrowserRouter>
+        <GameDataProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/*" element={<App />} />
+            </Routes>
+          </BrowserRouter>
+        </GameDataProvider>
       </AuthContextProvider>
     </SettingsContextProvider>
   </React.StrictMode>

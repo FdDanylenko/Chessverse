@@ -1,5 +1,5 @@
 .sidebar {
-  width: 165px;
+  width: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

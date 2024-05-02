@@ -10,7 +10,6 @@ const userSchema = new Schema({
   language: String,
   status: String,
   aboutMe: String,
-
   profilePicture: String,
   refreshToken: String,
 });

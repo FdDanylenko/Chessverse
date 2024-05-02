@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap");
+@import url("coords.css");
+@import url("lostPieces.css");
+@import url("infoSections.css");
+@import url("historySections.css");
+@import url("promotion.css");
+@import url("gameResult.css");
+@import url("boardTestInfo.css");
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  font-family: "Montserrat", sans-serif;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #302e2b;
+}
+.game {
+  height: 100%;
+  width: 1100px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.GameBoard {
+  flex: 1;
+  background-color: #302e2b;
+  height: 100vh;
+  border-radius: 5px;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.game-all-content {
+  position: relative;
+  height: calc(100vh - 60px);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 30px auto;
+  padding: 0 30px;
+}
+.game-field {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+.side-menu {
+  position: relative;
+  height: 880px;
+  margin: auto 0;
+  margin-left: 35px;
+  min-width: 400px;
+  max-width: 700px;
+  background-color: #262522;
+}
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 15px 0;
+  height: 90%;
+  aspect-ratio: 1 / 1;
+}
+
+.cell {
+  aspect-ratio: 1 / 1;
+  position: relative;
+  width: 12.5%;
+  height: 12.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cell img {
+  width: 90%;
+  height: 90%;
+  position: relative;
+  z-index: 1;
+}
+.white {
+  background-color: #e9edcc;
+}
+.black {
+  background-color: #779954;
+}
+.selected {
+  background-color: #bbcc43;
+}
+.available {
+  width: 30%;
+  height: 30%;
+  opacity: 0.15;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+}
+.availableToTake {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  opacity: 0.15;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 0px 0px 0px 10px black inset;
+}

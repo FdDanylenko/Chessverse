@@ -1,11 +1,11 @@
 import { serverPrivate } from "../api/server";
 import { useEffect, useContext } from "react";
 import useRefreshToken from "./useRefreshToken";
-import CustomerDataContext from "../context/CustomerDataContext";
+import SettingsContext from "../contexts/SettingsContext";
 
 const useServerPrivate = () => {
   const refresh = useRefreshToken();
-  const { accessToken, setAccessToken } = useContext(CustomerDataContext);
+  const { accessToken, setAccessToken } = useContext(SettingsContext);
   useEffect(() => {
     const requestIntercept = serverPrivate.interceptors.request.use(
       (config) => {

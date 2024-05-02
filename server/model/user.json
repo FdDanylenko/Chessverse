@@ -1,0 +1,14 @@
+[
+  {
+    "username": "Danylenko",
+    "firstName": "Theodore",
+    "lastName": "Danylenko",
+    "email": "fedirdanylenko@gmail.com",
+    "country": "Ukraine",
+    "language": "English",
+    "status": "",
+    "aboutMe": "",
+    "profilePicture": "http://localhost:5000/db/images/users&danylenko.jpg",
+    "refreshToken": ""
+  }
+]

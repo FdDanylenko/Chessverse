@@ -1,19 +1,7 @@
 import { createContext, ReactNode, useState } from "react";
 import { SidebarCollapsed, Theme } from "../models/settings";
 
-interface SettingsContextType {
-  themeUI: Theme;
-  setThemeUI: (themeUI: Theme) => void;
-  sidebarCollapsed: SidebarCollapsed;
-  setSidebarCollapsed: (sidebarCollapsed: SidebarCollapsed) => void;
-}
-
-const SettingsContext = createContext<SettingsContextType>({
-  themeUI: Theme.Dark,
-  setThemeUI: () => {},
-  sidebarCollapsed: SidebarCollapsed.False,
-  setSidebarCollapsed: () => {},
-});
+const SettingsContext = createContext<any>({});
 
 type SettingsContextProviderProps = {
   children: ReactNode;

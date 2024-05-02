@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import server from "../api/server";
-import CustomerDataContext from "../context/CustomerDataContext";
+import SettingsContext from "../contexts/SettingsContext";
 
 const useRefreshToken = () => {
-  const { accessToken, setAccessToken } = useContext(CustomerDataContext);
+  const { accessToken, setAccessToken } = useContext(SettingsContext);
   try {
     const refresh = async () => {
       const response = await server.post(
