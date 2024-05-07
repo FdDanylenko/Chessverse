@@ -6,19 +6,7 @@ interface User {
   email: string;
 }
 
-interface AuthContextType {
-  user: User | null;
-  setUser: (user: User | null) => void;
-  accessToken: string;
-  setAccessToken: (accessToken: string) => void;
-}
-
-const AuthContext = createContext<AuthContextType>({
-  user: null,
-  setUser: () => {},
-  accessToken: "",
-  setAccessToken: () => {},
-});
+const AuthContext = createContext<any>({});
 
 type AuthContextProviderProps = {
   children: ReactNode;
@@ -26,10 +14,18 @@ type AuthContextProviderProps = {
 
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
-  const [accessToken, setAccessToken] = useState<string>("g");
+  const [username, setUsername] = useState<string>("");
+  const [accessToken, setAccessToken] = useState<string>("");
   return (
     <AuthContext.Provider
-      value={{ user, setUser, accessToken, setAccessToken }}
+      value={{
+        user,
+        setUser,
+        username,
+        setUsername,
+        accessToken,
+        setAccessToken,
+      }}
     >
       {children}
     </AuthContext.Provider>

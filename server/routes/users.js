@@ -10,7 +10,7 @@ const {
 } = require("../controllers/usersController");
 const router = express.Router();
 
-router.route("/").post(getUserData);
+router.route("/getUserData").post(verifyJWT, getUserData);
 router.route("/register").post(handleNewUser);
 router.route("/login").post(handleAuth);
 router.route("/logout").post(handleLogout);

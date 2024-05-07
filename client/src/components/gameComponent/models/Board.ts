@@ -90,7 +90,7 @@ export class Board {
     );
   }
 
-  public addPiecess() {
+  public addPieces() {
     new King(Colors.WHITE, this.getCell(4, 7));
     new Queen(Colors.WHITE, this.getCell(3, 7));
     new Bishop(Colors.WHITE, this.getCell(2, 7));
@@ -115,7 +115,7 @@ export class Board {
       new Pawn(Colors.BLACK, this.getCell(i, 1));
     }
   }
-  public addPieces() {
+  public addPiecess() {
     new King(Colors.WHITE, this.getCell(4, 7));
     new Pawn(Colors.WHITE, this.getCell(2, 2));
     //============================================

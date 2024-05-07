@@ -37,7 +37,6 @@ function App() {
 
   useEffect(() => {
     restart();
-    console.clear();
     setCurrentPlayer(whitePlayer);
     // setTimeSet(timeSet);
   }, []);

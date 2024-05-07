@@ -2,11 +2,28 @@ import { useState } from "react";
 import useSettings from "../hooks/useSettings";
 import logo from "../assets/logo-grey.png";
 import { Theme, SidebarCollapsed } from "../models/settings";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import useServerPrivate from "../hooks/useServerPrivate";
 
 const SidebarComponent = () => {
   const { themeUI, setThemeUI } = useSettings();
   const { sidebarCollapsed, setSidebarCollapsed } = useSettings();
+  const { setUser, setAccessToken } = useAuth();
+  const navigate = useNavigate();
+  const serverPrivate = useServerPrivate();
+
+  const handleLogout = async () => {
+    try {
+      const result = await serverPrivate.post("/users/logout", {});
+      setUser(null);
+      setAccessToken("");
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div
       className={`sidebar ${
@@ -129,7 +146,10 @@ const SidebarComponent = () => {
             Settings
           </span>
         </div>
-        <div className="sidebar-settings-option-container">
+        <div
+          className="sidebar-settings-option-container"
+          onClick={() => handleLogout()}
+        >
           <span className="sidebar-settings-option-icon logout"></span>
           <span
             className={`${

@@ -1,13 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/logo-grey.png";
 import appleIcon from "../assets/socials/apple.d77d954d.svg";
 import googleIcon from "../assets/socials/google.d19562c0.svg";
 import facebookIcon from "../assets/socials/facebook-button.2cbe7756.svg";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import server from "../api/server";
 
 const RegisterComponent = () => {
+  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<true | false>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
+
+  useEffect(() => {
+    setErrorMessage("");
+  }, [username, email, password]);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    try {
+      const response = await server.post(
+        "/users/register",
+        { username, email, password },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      setUsername("");
+      setEmail("");
+      setPassword("");
+      navigate("/login");
+    } catch (err: any) {
+      setErrorMessage(err.response.data.message);
+    }
+  };
+
   return (
     <div className="all-content">
       <div className="base-container">
@@ -18,21 +49,33 @@ const RegisterComponent = () => {
           <div className={`error-message ${errorMessage ? "active" : ""}`}>
             {errorMessage}
           </div>
-          <form className="login-form">
+          <form className="login-form" onSubmit={handleSubmit}>
             <div className="input-container">
               <span className="icon">b</span>
-              <input className="auth-input" placeholder="Username"></input>
+              <input
+                value={username}
+                className="auth-input"
+                placeholder="Username"
+                onChange={(e) => setUsername(e.target.value)}
+              ></input>
             </div>
             <div className="input-container">
               <span className="icon">y</span>
-              <input className="auth-input" placeholder="Email"></input>
+              <input
+                value={email}
+                className="auth-input"
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+              ></input>
             </div>
             <div className="input-container">
               <span className="icon">d</span>
               <input
+                value={password}
                 className="auth-input"
                 type={`${showPassword ? "text" : "password"}`}
                 placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
               ></input>
               <span
                 className="icon"

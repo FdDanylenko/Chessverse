@@ -130,20 +130,21 @@ const BoardComponent = () => {
 
   // useEffect(() => {
   //   if (currentPlayer.color === Colors.BLACK && !board.endGame) {
-  //   // if (!board.endGame) {
+  //     // if (!board.endGame) {
   //     const move = bot(board, currentPlayer);
-  //     //let myKing: Cell | void = board.findKing(board, currentPlayer.color);
-  //     if(move?.cell && move.cellToMove){
-  //       makeBotMove(move.cell, move.cellToMove)
-  //     }else{
-  //       //((myKing as Cell).piece as King).isCheckMate = true;
-  //       board.setWinner(getOppositeColor(currentPlayer), "Checkmate")
+  //     let myKing: Cell | void = board.findKing(board, currentPlayer.color);
+  //     if (move?.cell && move.cellToMove) {
+  //       makeMove(move.cell, move.cellToMove);
+  //     } else {
+  //       ((myKing as Cell).piece as King).isCheckMate = true;
+  //       board.setWinner(getOppositeColor(currentPlayer), "Checkmate");
   //     }
-  //     // if(((myKing as Cell).piece as King).isCheckMate){
-  //     //   board.setWinner(getOppositeColor(currentPlayer), "Checkmate")
-  //     // }
+  //     if (((myKing as Cell).piece as King).isCheckMate) {
+  //       board.setWinner(getOppositeColor
+  //(currentPlayer), "Checkmate");
+  //     }
   //   }
-  // }, [currentPlayer])
+  // }, [currentPlayer, board]);
 
   useEffect(() => {
     highlightCells();

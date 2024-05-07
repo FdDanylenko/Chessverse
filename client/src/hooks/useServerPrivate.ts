@@ -1,11 +1,11 @@
 import { serverPrivate } from "../api/server";
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import useRefreshToken from "./useRefreshToken";
-import SettingsContext from "../contexts/SettingsContext";
+import useAuth from "./useAuth";
 
 const useServerPrivate = () => {
   const refresh = useRefreshToken();
-  const { accessToken, setAccessToken } = useContext(SettingsContext);
+  const { accessToken, setAccessToken } = useAuth();
   useEffect(() => {
     const requestIntercept = serverPrivate.interceptors.request.use(
       (config) => {
@@ -22,7 +22,7 @@ const useServerPrivate = () => {
         const prevRequest = error.config;
         if (error.response.status === 403 && !prevRequest.sent) {
           prevRequest.sent = true;
-          const newAccessToken = refresh();
+          const newAccessToken = await refresh();
           prevRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
           return serverPrivate(prevRequest);
         }

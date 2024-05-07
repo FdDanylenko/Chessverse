@@ -4,13 +4,13 @@ const bcrypt = require("bcrypt");
 const { sendEmail } = require("../middleware/mailer");
 
 const getUserData = async (req, res) => {
-  const id = req.body.id;
-  if (!id) {
-    return res.status(400).json({ message: "Id is required" });
+  const username = req.body.username;
+  if (!username) {
+    return res.status(400).json({ message: "Username is required" });
   }
-  const result = await User.findOne({ _id: id }).exec();
+  const result = await User.findOne({ username }).exec();
   if (!result) return res.status(204).json({ message: "No user" });
-  res.json(result);
+  res.json({ user: result });
 };
 
 const handleNewUser = async (req, res) => {
@@ -18,14 +18,17 @@ const handleNewUser = async (req, res) => {
   if (!email || !username || !password) {
     console.log("Username, email and password are required");
   }
-  const duplicate = await User.findOne({ username }).exec();
+  const duplicate = await User.findOne({
+    $or: [{ username }, { email }],
+  }).exec();
   if (duplicate) {
     return res
       .status(409)
-      .json({ message: `User with username ${username} already exists` });
+      .json({ message: `User with such username or email already exists` });
   }
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
+    console.log(hashedPassword);
     await User.create({
       username,
       email,
@@ -38,16 +41,17 @@ const handleNewUser = async (req, res) => {
 };
 
 const handleAuth = async (req, res) => {
-  const { username, password } = req.body;
-  if (!username || !password) {
+  const { authQuery, password } = req.body;
+  if (!authQuery || !password) {
     return res.status(400).json({
-      message: "Username and password are required",
-      body: `${req.body.password} ${req.body.username}`,
+      message: "Username or email and password are required",
     });
   }
-  const foundUser = await User.findOne({ username }).exec();
+  const foundUser = await User.findOne({
+    $or: [{ username: authQuery }, { email: authQuery }],
+  }).exec();
   if (!foundUser) {
-    return res.sendStatus(401);
+    return res.status(401).json({ message: "No such user registered" });
   }
   const match = await bcrypt.compare(password, foundUser.password);
   if (match) {
@@ -58,7 +62,7 @@ const handleAuth = async (req, res) => {
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "5m" }
+      { expiresIn: "5s" }
     );
     const refreshToken = jwt.sign(
       { username: foundUser.username },
@@ -73,9 +77,9 @@ const handleAuth = async (req, res) => {
       maxAge: 3 * 24 * 60 * 60 * 1000,
       secure: true,
     });
-    return res.json({ accessToken });
+    return res.json({ accessToken, username: foundUser.username });
   } else {
-    res.sendStatus(401);
+    res.status(401).json({ message: "Invalid password" });
   }
 };
 
@@ -116,7 +120,7 @@ const handleRefreshToken = async (req, res) => {
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "5m" }
+      { expiresIn: "5s" }
     );
     res.json({ accessToken });
   });
