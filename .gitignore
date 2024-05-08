@@ -9,7 +9,7 @@
 
 # production
 /build
-/server/db
+# /server/db
 
 # misc
 .DS_Store
