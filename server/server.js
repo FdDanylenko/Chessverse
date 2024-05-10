@@ -34,7 +34,7 @@ app.use(
   })
 );
 
-const io = require("socket.io")(PORT, {
+const io = require("socket.io")(8080, {
   cors: {
     origin: ["http://127.0.0.1:3000", "http://localhost:3000", undefined],
   },
