@@ -58,9 +58,9 @@ io.on("connection", (socket) => {
 });
 
 app.use("/users", require("./routes/users"));
-app.use("/db/images", require("./routes/imagesDB"));
+app.use("/db/images", require("./routes/imagesdb"));
 
 mongoose.connection.once("open", () => {
-  console.log("Connected to ChessverseDB");
+  console.log("Connected to Chessverse");
   app.listen(PORT, console.log(`Server runs on http://localhost:${PORT}`));
 });
