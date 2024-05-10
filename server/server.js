@@ -57,6 +57,9 @@ io.on("connection", (socket) => {
   });
 });
 
+app.get("/", (req, res) => {
+  res.send("Hello there!");
+});
 app.use("/users", require("./routes/users"));
 app.use("/db/images", require("./routes/imagesdb"));
 

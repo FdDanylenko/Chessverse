@@ -1,11 +1,11 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://chessverse.onrender.com",
 });
 
 export const serverPrivate = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://chessverse.onrender.com",
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
 });
