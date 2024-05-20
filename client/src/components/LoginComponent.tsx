@@ -15,13 +15,34 @@ const LoginComponent = () => {
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<true | false>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const { setUser, username, setUsername, setAccessToken } = useAuth();
+  const {
+    setUser,
+    username,
+    setUsername,
+    setAccessToken,
+    persist,
+    setPersist,
+  } = useAuth();
   const navigate = useNavigate();
   const serverPrivate = useServerPrivate();
 
   useEffect(() => {
     setErrorMessage("");
   }, [usernameOrEmail, password]);
+
+  const togglePersist = () => {
+    setPersist(() => {
+      if (persist === true) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+  };
+
+  useEffect(() => {
+    localStorage.setItem("persist", persist);
+  }, [persist]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -35,20 +56,22 @@ const LoginComponent = () => {
           withCredentials: true,
         }
       );
+      console.log(response.data.user);
       setAccessToken(response.data.accessToken);
-      setUsername(response.data.username);
-      try {
-        const result = await serverPrivate.post(
-          "/users/getUserData",
-          {
-            username: response.data.username,
-          },
-          { headers: { Authorization: `Bearer ${response.data.accessToken}` } }
-        );
-        setUser(result.data.user);
-      } catch (error: any) {
-        console.log(error.message);
-      }
+      setUser(response.data.user);
+      // setUsername(response.data.username);
+      // try {
+      //   const result = await serverPrivate.post(
+      //     "/users/getUserData",
+      //     {
+      //       username: response.data.username,
+      //     },
+      //     { headers: { Authorization: `Bearer ${response.data.accessToken}` } }
+      //   );
+      //   setUser(result.data.user);
+      // } catch (error: any) {
+      //   console.log(error.message);
+      // }
       setUsernameOrEmail("");
       setPassword("");
       navigate("/home");
@@ -96,7 +119,12 @@ const LoginComponent = () => {
             </div>
             <div className="auth-login-options">
               <div className="remember-me-component">
-                <input id="remember-me-checkbox" type="checkbox"></input>
+                <input
+                  id="remember-me-checkbox"
+                  type="checkbox"
+                  checked={persist}
+                  onChange={togglePersist}
+                ></input>
                 <label htmlFor="remember-me-checkbox">Remember me</label>
               </div>
               <div className="forgot-password">

@@ -4,6 +4,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const whiteList = require("./config/whiteList");
 const app = express();
+const server = require("http").Server(app);
 const PORT = process.env.PORT;
 const mongoose = require("mongoose");
 
@@ -34,7 +35,7 @@ app.use(
   })
 );
 
-const io = require("socket.io")(8080, {
+const io = require("socket.io")(server, {
   cors: {
     origin: ["http://127.0.0.1:3000", "http://localhost:3000", undefined],
   },
@@ -65,5 +66,5 @@ app.use("/db/images", require("./routes/imagesdb"));
 
 mongoose.connection.once("open", () => {
   console.log("Connected to Chessverse");
-  app.listen(PORT, console.log(`Server runs on http://localhost:${PORT}`));
+  server.listen(PORT, console.log(`Server runs on http://localhost:${PORT}`));
 });

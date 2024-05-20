@@ -3,7 +3,7 @@ import server from "../api/server";
 import AuthContext from "../contexts/AuthContext";
 
 const useRefreshToken = () => {
-  const { accessToken, setAccessToken } = useContext(AuthContext);
+  const { accessToken, setAccessToken, setUser } = useContext(AuthContext);
   const refresh = async () => {
     const response = await server.post(
       "/users/refresh",
@@ -13,6 +13,7 @@ const useRefreshToken = () => {
       }
     );
     setAccessToken(response.data.accessToken);
+    setUser(response.data.user);
     return response.data.accessToken;
   };
   return refresh;

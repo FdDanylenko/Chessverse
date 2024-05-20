@@ -14,7 +14,7 @@ const RequireAuth = () => {
     const fetchUser = async () => {
       try {
         const result = await serverPrivate.post("/users/getUserData", {
-          username,
+          username: user.username,
         });
         setUser(result.data.user);
       } catch (error: any) {

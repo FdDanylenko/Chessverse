@@ -15,7 +15,9 @@ const SidebarComponent = () => {
 
   const handleLogout = async () => {
     try {
-      const result = await serverPrivate.post("/users/logout", {});
+      const result = await serverPrivate.post("/users/logout", {
+        withCredentials: true,
+      });
       setUser(null);
       setAccessToken("");
       navigate("/login");

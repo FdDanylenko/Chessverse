@@ -16,6 +16,10 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [username, setUsername] = useState<string>("");
   const [accessToken, setAccessToken] = useState<string>("");
+  const [persist, setPersist] = useState<any>(() => {
+    const item = localStorage.getItem("persist");
+    return item ? JSON.parse(item) : false;
+  });
   return (
     <AuthContext.Provider
       value={{
@@ -25,6 +29,8 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         setUsername,
         accessToken,
         setAccessToken,
+        persist,
+        setPersist,
       }}
     >
       {children}

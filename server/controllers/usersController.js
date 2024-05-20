@@ -16,7 +16,9 @@ const getUserData = async (req, res) => {
 const handleNewUser = async (req, res) => {
   const { username, email, password } = req.body;
   if (!email || !username || !password) {
-    console.log("Username, email and password are required");
+    return res
+      .status(400)
+      .json({ message: "Username, email and password are required" });
   }
   const duplicate = await User.findOne({
     $or: [{ username }, { email }],
@@ -28,7 +30,6 @@ const handleNewUser = async (req, res) => {
   }
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log(hashedPassword);
     await User.create({
       username,
       email,
@@ -67,7 +68,7 @@ const handleAuth = async (req, res) => {
     const refreshToken = jwt.sign(
       { username: foundUser.username },
       process.env.REFRESH_TOKEN_SECRET,
-      { expiresIn: "3d" }
+      { expiresIn: "10d" }
     );
     foundUser.refreshToken = refreshToken;
     await foundUser.save();
@@ -77,7 +78,7 @@ const handleAuth = async (req, res) => {
       maxAge: 3 * 24 * 60 * 60 * 1000,
       secure: true,
     });
-    return res.json({ accessToken, username: foundUser.username });
+    return res.json({ accessToken, user: foundUser });
   } else {
     res.status(401).json({ message: "Invalid password" });
   }
@@ -101,7 +102,6 @@ const handleLogout = async (req, res) => {
 
 const handleRefreshToken = async (req, res) => {
   const cookies = req.cookies;
-  console.log(cookies);
   if (!cookies?.jwt) {
     return res.sendStatus(204);
   }
@@ -122,7 +122,7 @@ const handleRefreshToken = async (req, res) => {
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: "5s" }
     );
-    res.json({ accessToken });
+    res.json({ user: foundUser, accessToken });
   });
 };
 
