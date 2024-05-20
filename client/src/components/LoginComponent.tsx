@@ -25,6 +25,7 @@ const LoginComponent = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    console.log("f");
     try {
       const response = await server.post(
         "/users/login",
