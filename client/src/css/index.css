@@ -1,8 +1,9 @@
 @import url(App.css);
 @import url(LoginComponent.css);
 @import url(MissingComponent.css);
-@import url(HomeComponent.css);
 @import url(SidebarComponent.css);
+@import url(Loader.css);
+@import url(HomeComponent.css);
 
 body {
   margin: 0;

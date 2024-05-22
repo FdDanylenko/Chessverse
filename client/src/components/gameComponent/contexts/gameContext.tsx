@@ -3,6 +3,7 @@ import { Board } from "../models/Board";
 import { Player } from "../models/Player";
 import { Colors } from "../models/Colors";
 import { PiecesNames } from "../models/pieces/PiecesNames";
+import { GameModes } from "../models/GameModes";
 
 export const GameDataContext = createContext<any>({});
 
@@ -17,6 +18,8 @@ export const GameDataProvider: FC<{ children: React.ReactNode }> = ({
   const [blackPlayer, setBlackPlayer] = useState(new Player(Colors.BLACK));
   const [timeSet, setTimeSet] = useState<number>(900);
   const [currentPlayer, setCurrentPlayer] = useState<Player>(whitePlayer);
+  const [playerColor, setPlayerColor] = useState<Colors>(Colors.WHITE);
+  const [gameMode, setGameMode] = useState<GameModes>(GameModes.SANDBOX);
   const [promotionPiece, setPromotionPiece] = useState<PiecesNames>();
   const [isPromotionDialogOpen, setIsPromotionDialogOpen] = useState<
     true | false
@@ -57,6 +60,10 @@ export const GameDataProvider: FC<{ children: React.ReactNode }> = ({
   return (
     <GameDataContext.Provider
       value={{
+        playerColor,
+        setPlayerColor,
+        gameMode,
+        setGameMode,
         board,
         setBoard,
         whitePlayer,

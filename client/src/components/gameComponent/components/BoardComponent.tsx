@@ -12,13 +12,7 @@ import { io } from "socket.io-client";
 import { socket } from "../socket";
 import { Piece } from "../models/pieces/Piece";
 import { GameDataContext } from "../contexts/gameContext";
-
-interface BoardProps {
-  board: Board;
-  setBoard: (board: Board) => void;
-  currentPlayer: Player;
-  swapPlayer: () => void;
-}
+import { GameModes } from "../models/GameModes";
 
 const BoardComponent = () => {
   let moveSound = require("./../assets/move-self.mp3");
@@ -26,22 +20,24 @@ const BoardComponent = () => {
   function PlaySound(sound: any) {
     new Audio(sound).play();
   }
-  const { board, setBoard, currentPlayer, swapPlayer } =
+  const { gameMode, playerColor, board, setBoard, currentPlayer, swapPlayer } =
     useContext(GameDataContext);
   const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
   const [opponent, setOpponent] = useState("");
   const [socketId, setSocketId] = useState("");
 
   useEffect(() => {
-    socket.on("connect", () => {
-      if (socket.id) {
-        setSocketId(socket.id);
-      }
-    });
+    if (gameMode === GameModes.ONLINE) {
+      socket.on("connect", () => {
+        if (socket.id) {
+          setSocketId(socket.id);
+        }
+      });
+    }
   }, []);
 
   useEffect(() => {
-    if (socket == null) return;
+    if (socket == null || gameMode !== GameModes.ONLINE) return;
     socket.on("receive-move", (id, x, y, xx, yy) => {
       setSelectedCell(null);
       setOpponent(id);
@@ -79,15 +75,17 @@ const BoardComponent = () => {
       if (((myKing as Cell).piece as King).isStaleMate) {
         board.setWinner("Draw", "StaleMate");
       }
-      socket.emit(
-        "make-move",
-        socket.id,
-        selectedCell.x,
-        selectedCell.y,
-        cell.x,
-        cell.y,
-        opponent
-      );
+      if (gameMode === GameModes.ONLINE) {
+        socket.emit(
+          "make-move",
+          socket.id,
+          selectedCell.x,
+          selectedCell.y,
+          cell.x,
+          cell.y,
+          opponent
+        );
+      }
       swapPlayer();
     } else {
       if (cell.piece?.color === currentPlayer?.color && !board.endGame) {
@@ -128,23 +126,23 @@ const BoardComponent = () => {
     }
   }
 
-  // useEffect(() => {
-  //   if (currentPlayer.color === Colors.BLACK && !board.endGame) {
-  //     // if (!board.endGame) {
-  //     const move = bot(board, currentPlayer);
-  //     let myKing: Cell | void = board.findKing(board, currentPlayer.color);
-  //     if (move?.cell && move.cellToMove) {
-  //       makeMove(move.cell, move.cellToMove);
-  //     } else {
-  //       ((myKing as Cell).piece as King).isCheckMate = true;
-  //       board.setWinner(getOppositeColor(currentPlayer), "Checkmate");
-  //     }
-  //     if (((myKing as Cell).piece as King).isCheckMate) {
-  //       board.setWinner(getOppositeColor
-  //(currentPlayer), "Checkmate");
-  //     }
-  //   }
-  // }, [currentPlayer, board]);
+  useEffect(() => {
+    if (gameMode === GameModes.COMPUTER) {
+      if (currentPlayer.color !== playerColor && !board.endGame) {
+        const move = bot(board, currentPlayer);
+        let myKing: Cell | void = board.findKing(board, currentPlayer.color);
+        if (move?.cell && move.cellToMove) {
+          makeMove(move.cell, move.cellToMove);
+        } else {
+          ((myKing as Cell).piece as King).isCheckMate = true;
+          board.setWinner(getOppositeColor(currentPlayer), "Checkmate");
+        }
+        if (((myKing as Cell).piece as King).isCheckMate) {
+          board.setWinner(getOppositeColor(currentPlayer), "Checkmate");
+        }
+      }
+    }
+  }, [currentPlayer, board]);
 
   useEffect(() => {
     highlightCells();

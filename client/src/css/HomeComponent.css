@@ -1,11 +1,17 @@
 .home-all-content {
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .home-container {
   width: 1052px;
   margin: 30px auto;
+  margin-bottom: 10px;
   padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .home-header {
@@ -64,4 +70,207 @@
 }
 .home-navigation-option-container.friends::before {
   content: "\006E";
+}
+
+.promo-container {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.promo-column {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  border-radius: 5px;
+  box-shadow: 0 5px 0 0 rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.promo-item {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.promo-item-icon img {
+  width: 55px;
+  margin-right: 10px;
+}
+
+.promo-item-title {
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 21px;
+}
+.promo-item-subtitle {
+  font-weight: 100;
+  color: #ffffff;
+  font-size: 14px;
+}
+.promo-preview .board {
+  margin: 0;
+}
+.promo-preview .board .cell::before,
+.promo-preview .board .cell::after {
+  font-size: 0px !important;
+}
+
+.promo-preview-label {
+  line-height: 48px;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  background-color: #262421;
+  color: #ffffff;
+}
+
+.promo-column:hover > .promo-preview-label {
+  background-color: #3b3936;
+}
+
+.promo-item-links-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.play-quick-link {
+  background-color: #262421;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  box-shadow: 0 5px 0 0 rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.play-quick-link:hover {
+  background-color: #3b3936;
+}
+
+.play-quick-link-icon {
+  width: 40px;
+  margin-right: 15px;
+}
+.completed-games-container {
+  margin-top: 30px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.completed-games-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px 20px;
+  background-color: #262421;
+  color: #ffffff;
+}
+.completed-games-more::before {
+  content: "\2026";
+  font-family: "Icons";
+}
+.completed-games-container {
+  /* width: 700px; */
+}
+.completed-games-list {
+  height: 200px;
+  background-color: #262421;
+  text-align: center;
+  line-height: 200px;
+  font-size: 18px;
+}
+.completed-games-labels {
+  padding: 5px 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.completed-games-label {
+  font-size: 12px;
+}
+.completed-games-label.players {
+  width: 252px;
+}
+.completed-games-label.result {
+  width: 72px;
+}
+.completed-games-label.accuracy {
+  width: 98px;
+}
+.completed-games-label.moves {
+  width: 66px;
+}
+.completed-games-label.date {
+  width: 150px;
+  text-align: right;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  color: #9e9d9c;
+  flex: 1;
+  align-items: center;
+}
+
+.footer a {
+  color: #9e9d9c !important;
+  text-decoration: none;
+  font-size: 12px;
+}
+.footer a:hover {
+  color: #ffffff !important;
+}
+
+.footer-links-divider {
+  margin: 0 3px;
+}
+
+.footer-links-socials {
+  font-family: "Icons";
+  font-size: 24px;
+}
+.footer-link-social {
+  margin: 0 3px;
+}
+
+.footer-link-social.tiktok::before {
+  content: "\1FB0";
+}
+.footer-link-social.tiktok:hover::before {
+  color: #ffffff;
+}
+.footer-link-social.twitter::before {
+  content: "\E90D";
+}
+.footer-link-social.twitter:hover::before {
+  color: #ffffff;
+}
+.footer-link-social.youtube::before {
+  content: "\0060";
+}
+.footer-link-social.youtube:hover::before {
+  color: #e12711;
+}
+.footer-link-social.twitch::before {
+  content: "\0393";
+}
+.footer-link-social.twitch:hover::before {
+  color: #9146ff;
+}
+.footer-link-social.instagram::before {
+  content: "\1F00";
+}
+.footer-link-social.instagram:hover::before {
+  color: #d0394f;
+}
+.footer-link-social.discord::before {
+  content: "\1F48";
+}
+.footer-link-social.discord:hover::before {
+  color: #565fe2;
 }

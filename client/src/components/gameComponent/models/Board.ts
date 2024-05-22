@@ -115,12 +115,32 @@ export class Board {
       new Pawn(Colors.BLACK, this.getCell(i, 1));
     }
   }
-  public addPiecess() {
-    new King(Colors.WHITE, this.getCell(4, 7));
-    new Pawn(Colors.WHITE, this.getCell(2, 2));
+  public addPiecesPreviewPuzzle() {
+    new King(Colors.WHITE, this.getCell(1, 7));
+    new Queen(Colors.WHITE, this.getCell(1, 2));
+    new Knight(Colors.WHITE, this.getCell(2, 3));
+    new Knight(Colors.WHITE, this.getCell(5, 5));
+    new Rook(Colors.WHITE, this.getCell(2, 7));
+    new Rook(Colors.WHITE, this.getCell(7, 7));
+    new Pawn(Colors.WHITE, this.getCell(0, 6));
+    new Pawn(Colors.WHITE, this.getCell(1, 6));
+    new Pawn(Colors.WHITE, this.getCell(2, 6));
+    new Pawn(Colors.WHITE, this.getCell(3, 5));
+    new Pawn(Colors.WHITE, this.getCell(4, 4));
+    new Pawn(Colors.WHITE, this.getCell(6, 5));
+    new Pawn(Colors.WHITE, this.getCell(7, 6));
     //============================================
-    new King(Colors.BLACK, this.getCell(6, 0));
-    new Bishop(Colors.BLACK, this.getCell(5, 2));
-    new Knight(Colors.BLACK, this.getCell(2, 3));
+    new King(Colors.BLACK, this.getCell(1, 0));
+    new Queen(Colors.BLACK, this.getCell(4, 0));
+    new Bishop(Colors.BLACK, this.getCell(1, 1));
+    new Bishop(Colors.BLACK, this.getCell(5, 0));
+    new Knight(Colors.BLACK, this.getCell(3, 2));
+    new Rook(Colors.BLACK, this.getCell(3, 0));
+    new Rook(Colors.BLACK, this.getCell(7, 0));
+    new Pawn(Colors.BLACK, this.getCell(0, 2));
+    new Pawn(Colors.BLACK, this.getCell(4, 3));
+    new Pawn(Colors.BLACK, this.getCell(5, 2));
+    new Pawn(Colors.BLACK, this.getCell(6, 1));
+    new Pawn(Colors.BLACK, this.getCell(7, 1));
   }
 }
