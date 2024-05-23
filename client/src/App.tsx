@@ -15,29 +15,38 @@ import GameBoardComponent from "./components/gameComponent/GameBoardComponent";
 function App() {
   return (
     <Routes>
-      <Route path="register" element={<RegisterComponent />} />
-      <Route path="login" element={<LoginComponent />} />
-      <Route path="forgot" element={<ForgotPasswordComponent />} />
+      <Route path="/Chessverse/register" element={<RegisterComponent />} />
+      <Route path="/Chessverse/login" element={<LoginComponent />} />
+      <Route path="/Chessverse/forgot" element={<ForgotPasswordComponent />} />
 
       <Route element={<PersistLogin />}>
         <Route element={<RequireAuth />}>
-          <Route path="/" element={<AppLayout />}>
-            <Route path="/" element={<HomeComponent />} />
-            <Route path="/home" element={<HomeComponent />} />
-            <Route path="/user" element={<UserProfileComponent />} />
-            <Route path="/play">
-              <Route path="" element={<GameBoardComponent />} />
-              <Route path="online" element={<GameBoardComponent />} />
-              <Route path="computer" element={<GameBoardComponent />} />
-              <Route path="online/friend" />
-              <Route path="tournaments" />
-              <Route path="variants" />
+          <Route path="/Chessverse//" element={<AppLayout />}>
+            <Route path="/Chessverse//" element={<HomeComponent />} />
+            <Route path="/Chessverse//home" element={<HomeComponent />} />
+            <Route
+              path="/Chessverse//user"
+              element={<UserProfileComponent />}
+            />
+            <Route path="/Chessverse//play">
+              <Route path="/Chessverse/" element={<GameBoardComponent />} />
+              <Route
+                path="/Chessverse/online"
+                element={<GameBoardComponent />}
+              />
+              <Route
+                path="/Chessverse/computer"
+                element={<GameBoardComponent />}
+              />
+              <Route path="/Chessverse/online/friend" />
+              <Route path="/Chessverse/tournaments" />
+              <Route path="/Chessverse/variants" />
             </Route>
           </Route>
         </Route>
       </Route>
 
-      <Route path="/*" element={<MissingComponent />} />
+      <Route path="/Chessverse//*" element={<MissingComponent />} />
     </Routes>
   );
 }
