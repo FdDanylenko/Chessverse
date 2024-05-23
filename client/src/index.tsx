@@ -18,7 +18,7 @@ root.render(
         <GameDataProvider>
           <BrowserRouter>
             <Routes>
-              <Route path="/Chessverse/*" element={<App />} />
+              <Route path="/*" element={<App />} />
             </Routes>
           </BrowserRouter>
         </GameDataProvider>
