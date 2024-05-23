@@ -26,7 +26,7 @@ function App() {
             <Route path="/home" element={<HomeComponent />} />
             <Route path="/user" element={<UserProfileComponent />} />
             <Route path="/play">
-              <Route path="" element={<GameBoardComponent />} />
+              <Route path="/" element={<GameBoardComponent />} />
               <Route path="online" element={<GameBoardComponent />} />
               <Route path="computer" element={<GameBoardComponent />} />
               <Route path="online/friend" />
