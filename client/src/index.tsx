@@ -16,7 +16,7 @@ root.render(
     <SettingsContextProvider>
       <AuthContextProvider>
         <GameDataProvider>
-          <BrowserRouter>
+          <BrowserRouter basename="/Chessverse">
             <Routes>
               <Route path="/*" element={<App />} />
             </Routes>

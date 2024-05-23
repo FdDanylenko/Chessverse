@@ -15,9 +15,9 @@ import GameBoardComponent from "./components/gameComponent/GameBoardComponent";
 function App() {
   return (
     <Routes>
-      <Route path="/register" element={<RegisterComponent />} />
-      <Route path="/login" element={<LoginComponent />} />
-      <Route path="/forgot" element={<ForgotPasswordComponent />} />
+      <Route path="register" element={<RegisterComponent />} />
+      <Route path="login" element={<LoginComponent />} />
+      <Route path="forgot" element={<ForgotPasswordComponent />} />
 
       <Route element={<PersistLogin />}>
         <Route element={<RequireAuth />}>
@@ -27,17 +27,17 @@ function App() {
             <Route path="/user" element={<UserProfileComponent />} />
             <Route path="/play">
               <Route path="/" element={<GameBoardComponent />} />
-              <Route path="/online" element={<GameBoardComponent />} />
-              <Route path="/computer" element={<GameBoardComponent />} />
-              <Route path="/online/friend" />
-              <Route path="/tournaments" />
-              <Route path="/variants" />
+              <Route path="online" element={<GameBoardComponent />} />
+              <Route path="computer" element={<GameBoardComponent />} />
+              <Route path="online/friend" />
+              <Route path="tournaments" />
+              <Route path="variants" />
             </Route>
           </Route>
         </Route>
       </Route>
 
-      <Route path="//*" element={<MissingComponent />} />
+      <Route path="/*" element={<MissingComponent />} />
     </Routes>
   );
 }
