@@ -22,22 +22,18 @@ function App() {
       <Route element={<PersistLogin />}>
         <Route element={<RequireAuth />}>
           <Route path="/" element={<AppLayout />}>
-            <Route path="/" element={<HomeComponent />} />
-            <Route path="/home" element={<HomeComponent />} />
-            <Route path="/user" element={<UserProfileComponent />} />
-            <Route path="/play">
-              <Route path="/" element={<GameBoardComponent />} />
+            <Route index element={<HomeComponent />} />
+            <Route path="home" element={<HomeComponent />} />
+            <Route path="user" element={<UserProfileComponent />} />
+            <Route path="play" element={<GameBoardComponent />}>
               <Route path="online" element={<GameBoardComponent />} />
               <Route path="computer" element={<GameBoardComponent />} />
-              <Route path="online/friend" />
-              <Route path="tournaments" />
-              <Route path="variants" />
             </Route>
           </Route>
         </Route>
       </Route>
 
-      <Route path="/*" element={<MissingComponent />} />
+      <Route path="*" element={<MissingComponent />} />
     </Routes>
   );
 }
