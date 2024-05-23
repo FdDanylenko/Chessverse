@@ -37,7 +37,13 @@ app.use(
 
 const io = require("socket.io")(server, {
   cors: {
-    origin: ["http://127.0.0.1:3000", "http://localhost:3000", undefined],
+    origin: [
+      "http://127.0.0.1:3000",
+      "http://localhost:3000",
+      "https://fddanylenko.github.io/Chessverse",
+      "https://fddanylenko.github.io",
+      undefined,
+    ],
   },
 });
 
