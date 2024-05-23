@@ -1,22 +1,13 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useContext, useEffect, useRef, useState } from "react";
 import { Player } from "../models/Player";
 import { Colors } from "../models/Colors";
 import { Board } from "../models/Board";
+import { GameDataContext } from "../contexts/gameContext";
 
-interface BotTimerProps {
-  currentPlayer: Player | null;
-  timeSet: number;
-  board: Board;
-  swapPlayer: () => void;
-}
-
-const BotTimer: FC<BotTimerProps> = ({
-  currentPlayer,
-  timeSet,
-  board,
-  swapPlayer,
-}) => {
-  const [time, setTime] = useState(900);
+const BotTimer = () => {
+  const { board, timeSet, currentPlayer, swapPlayer } =
+    useContext(GameDataContext);
+  const [time, setTime] = useState(timeSet);
   const timer = useRef<null | ReturnType<typeof setInterval>>(null);
   var seconds = Math.floor(time % 60);
   var minutes = Math.floor((time / 60) % 60);
@@ -35,7 +26,7 @@ const BotTimer: FC<BotTimerProps> = ({
   }, [board.endGame]);
 
   function restartTimer() {
-    setTime(900);
+    setTime(timeSet);
   }
 
   function startTimer() {
@@ -50,7 +41,7 @@ const BotTimer: FC<BotTimerProps> = ({
   }
 
   function decrementTimer() {
-    setTime((prev) => {
+    setTime((prev: any) => {
       if (prev > 0) {
         return prev - 1;
       } else {

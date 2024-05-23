@@ -173,7 +173,7 @@
   font-family: "Icons";
 }
 .completed-games-container {
-  /* width: 700px; */
+  width: 700px;
 }
 .completed-games-list {
   height: 200px;

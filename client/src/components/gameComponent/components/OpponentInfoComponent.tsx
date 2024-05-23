@@ -2,8 +2,9 @@ import React, { FC, useContext } from "react";
 import LostPieces from "./LostPieces";
 import { Board } from "../models/Board";
 import { Player } from "../models/Player";
-import BotTimer from "./BotTimer";
+import BotTimer from "./OpponentTimer";
 import { GameDataContext } from "../contexts/gameContext";
+import { GameModes } from "../models/GameModes";
 
 interface PlayerInfoComponentProps {
   board: Board;
@@ -14,7 +15,8 @@ interface PlayerInfoComponentProps {
 
 const PlayerInfoComponent = () => {
   // const PlayerInfoComponent: FC<PlayerInfoComponentProps> = ({board, currentPlayer, timeSet, swapPlayer}) => {
-  const { board, currentPlayer, swapPlayer } = useContext(GameDataContext);
+  const { gameMode, timeSet, board, currentPlayer, swapPlayer } =
+    useContext(GameDataContext);
   return (
     <div className="info-section">
       <div className="player-info">
@@ -24,7 +26,7 @@ const PlayerInfoComponent = () => {
           <LostPieces pieces={board.whiteLostPieces} />
         </div>
       </div>
-      {/* <BotTimer currentPlayer={currentPlayer} timeSet={timeSet} board={board} swapPlayer={swapPlayer}/> */}
+      {gameMode === GameModes.ONLINE ? <BotTimer /> : <></>}
     </div>
   );
 };

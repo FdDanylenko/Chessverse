@@ -20,8 +20,16 @@ const BoardComponent = () => {
   function PlaySound(sound: any) {
     new Audio(sound).play();
   }
-  const { gameMode, playerColor, board, setBoard, currentPlayer, swapPlayer } =
-    useContext(GameDataContext);
+  const {
+    gameStatus,
+    setGameStatus,
+    gameMode,
+    playerColor,
+    board,
+    setBoard,
+    currentPlayer,
+    swapPlayer,
+  } = useContext(GameDataContext);
   const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
   const [opponent, setOpponent] = useState("");
   const [socketId, setSocketId] = useState("");
@@ -35,6 +43,28 @@ const BoardComponent = () => {
       });
     }
   }, []);
+  useEffect(() => {
+    if (gameStatus === "awaiting") {
+      socket.emit("fetch-opponent", socket.id, (response: any) => {
+        setOpponent(response.opponent);
+        setGameStatus("started");
+        console.log(`Opponent id: ${response.opponent}`);
+      });
+      console.log(`My id: ${socket.id}`);
+    }
+  }, [gameStatus]);
+  useEffect(() => {
+    if (true) {
+      socket.on("receive-opponent", (id) => {
+        setOpponent(id);
+        setGameStatus("started");
+        console.log(`Opponent id: ${id}`);
+      });
+      return () => {
+        socket.off("receive-opponent");
+      };
+    }
+  }, [gameStatus]);
 
   useEffect(() => {
     if (socket == null || gameMode !== GameModes.ONLINE) return;
@@ -42,7 +72,6 @@ const BoardComponent = () => {
       setSelectedCell(null);
       setOpponent(id);
       makeMove(board.getCell(x, y), board.getCell(xx, yy));
-      console.log(currentPlayer);
       updateBoard();
     });
     return () => {

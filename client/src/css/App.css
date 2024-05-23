@@ -4,3 +4,105 @@
   background-color: #312e2b;
   display: flex;
 }
+
+.side-menu-container {
+  margin: 20px 16px;
+}
+
+.button-green {
+  margin-top: 40px;
+  width: 100%;
+  height: 60px;
+  border-radius: 10px;
+  background-color: rgba(129, 182, 76, 255);
+  font-size: 24px;
+  line-height: 60px;
+  text-align: center;
+  color: #e9edcc;
+  font-weight: 800;
+  border: 0;
+  box-shadow: 0 5px 0 0 rgba(69, 117, 60, 255);
+}
+
+.lobby-game-time {
+  width: 100%;
+  height: 60px;
+  background-color: #3c3b39;
+  border-radius: 5px;
+  font-size: 24px;
+  line-height: 60px;
+  text-align: center;
+  color: #e9edcc;
+  border: none;
+  margin-bottom: 15px;
+}
+.lobby-game-time span::before {
+  content: "\1F1B";
+  font-size: 29px;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  font-family: "Icons";
+}
+.lobby-game-time span.blitz::before {
+  content: "\1F1D";
+  color: #e3aa24;
+}
+.lobby-game-time span.rapid::before {
+  content: "\1F1C";
+  color: #fad541;
+}
+.lobby-game-time span.long::before {
+  content: "\1F1B";
+  color: #81b64c;
+}
+.lobby-time-setups-row {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.lobby-time-setup {
+  width: 30%;
+  height: 45px;
+  background-color: #3c3b39;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 45px;
+  text-align: center;
+  color: #e9edcc;
+  border: 3px solid #3c3b39;
+}
+.lobby-time-setup.active {
+  border: 3px solid #81b64c;
+}
+.lobby-time-setups-row-label {
+  font-size: 16px;
+}
+
+.lobby-time-setups-row-label::before {
+  content: "\1F1D";
+  line-height: 20px;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  font-family: "Icons";
+  color: #e3aa24;
+}
+.lobby-time-setups-row-label:nth-child(3):before {
+  content: "\1F1C";
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  font-family: "Icons";
+  color: #fad541;
+}
+.lobby-time-setups-row-label:nth-child(5):before {
+  content: "\1F1B";
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  font-family: "Icons";
+  color: #81b64c;
+}

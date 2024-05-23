@@ -5,7 +5,7 @@ import { Board } from "./models/Board";
 import { Player } from "./models/Player";
 import { Colors } from "./models/Colors";
 import PawnPromotionComponent from "./components/PawnPromotionComponent";
-import BotInfoComponent from "./components/BotInfoComponent";
+import BotInfoComponent from "./components/OpponentInfoComponent";
 import HistoryComponent from "./components/HistoryComponent";
 import GameResult from "./components/GameResult";
 import BoardTestingInfo from "./components/BoardTestingInfo";
@@ -38,7 +38,7 @@ function App() {
   useEffect(() => {
     restart();
     setCurrentPlayer(whitePlayer);
-    // setTimeSet(timeSet);
+    setTimeSet(timeSet);
   }, []);
 
   // useEffect(() => {

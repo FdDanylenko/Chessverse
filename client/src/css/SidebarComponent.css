@@ -19,7 +19,7 @@
 .sidebar-settings-option-icon::before {
   display: inline-block;
   font-family: Icons;
-  font-size: 24px;
+  font-size: 18px;
   width: 45px;
   text-align: center;
 }
@@ -57,7 +57,7 @@
 
 .navigation-container span {
   display: inline-block;
-  font-size: 21px;
+  font-size: 18px;
   line-height: 30px;
   font-weight: 600;
 }
@@ -87,7 +87,7 @@
 
 .navigation-option-body {
   display: inline-block;
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 600;
   margin-left: 10px;
 }

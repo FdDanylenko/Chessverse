@@ -17,7 +17,7 @@ import { GameModes } from "./gameComponent/models/GameModes";
 
 const HomeComponent = () => {
   const { user, setUser, accessToken, setAccessToken } = useAuth();
-  const { gameMode, setGameMode } = useContext(GameDataContext);
+  const { gameMode, setGameMode, setGameStatus } = useContext(GameDataContext);
   const [board, setBoard] = useState(() => {
     const newBoard = new Board();
     newBoard.initCells();
@@ -32,6 +32,12 @@ const HomeComponent = () => {
   });
 
   const navigate = useNavigate();
+
+  const navigateToLobby = (gm: GameModes) => {
+    setGameMode(gm);
+    setGameStatus("lobby");
+    navigate("/play");
+  };
 
   return (
     <div className="home-all-content">
@@ -87,10 +93,7 @@ const HomeComponent = () => {
                 <div
                   className="play-quick-link"
                   onClick={() => {
-                    {
-                      setGameMode(GameModes.SANDBOX);
-                      navigate("/play");
-                    }
+                    navigateToLobby(GameModes.SANDBOX);
                   }}
                 >
                   <img
@@ -102,10 +105,7 @@ const HomeComponent = () => {
                 <div
                   className="play-quick-link"
                   onClick={() => {
-                    {
-                      setGameMode(GameModes.ONLINE);
-                      navigate("/play");
-                    }
+                    navigateToLobby(GameModes.ONLINE);
                   }}
                 >
                   <img
@@ -124,10 +124,7 @@ const HomeComponent = () => {
                 <div
                   className="play-quick-link"
                   onClick={() => {
-                    {
-                      setGameMode(GameModes.COMPUTER);
-                      navigate("/play");
-                    }
+                    navigateToLobby(GameModes.COMPUTER);
                   }}
                 >
                   <img
@@ -158,9 +155,12 @@ const HomeComponent = () => {
               <div className="promo-preview">
                 <BoardComponentPreview board={boardPuzzle} />
               </div>
-              <div className="promo-preview-label">Play Friend</div>
+              <div className="promo-preview-label">Solve Puzzle</div>
             </div>
-            <div className="promo-column">
+            <div
+              className="promo-column"
+              onClick={() => navigateToLobby(GameModes.COMPUTER)}
+            >
               <div className="promo-item">
                 <div className="promo-item-icon">
                   <img src={promoItemIconComputer}></img>
@@ -182,7 +182,7 @@ const HomeComponent = () => {
                 </div>
                 <div className="promo-item-body">
                   <div className="promo-item-title">Play a friend</div>
-                  <div className="promo-item-subtitle">Invite your friend</div>
+                  <div className="promo-item-subtitle">Invite a friend</div>
                 </div>
               </div>
               <div className="promo-preview">

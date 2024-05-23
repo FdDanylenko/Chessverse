@@ -4,6 +4,7 @@ import { Board } from "../models/Board";
 import PlayerTimer from "./PlayerTimer";
 import { Player } from "../models/Player";
 import { GameDataContext } from "../contexts/gameContext";
+import { GameModes } from "../models/GameModes";
 
 interface PlayerInfoComponentProps {
   board: Board;
@@ -14,7 +15,7 @@ interface PlayerInfoComponentProps {
 
 const PlayerInfoComponent = () => {
   // const PlayerInfoComponent: FC<PlayerInfoComponentProps> = ({board, currentPlayer, timeSet, swapPlayer}) => {
-  const { board, currentPlayer, swapPlayer } = useContext(GameDataContext);
+  const { gameMode, board, currentPlayer, swapPlayer } = useContext(GameDataContext);
   return (
     <div className="info-section">
       <div className="player-info">
@@ -24,12 +25,7 @@ const PlayerInfoComponent = () => {
           <LostPieces pieces={board.blackLostPieces} />
         </div>
       </div>
-      {/* <PlayerTimer
-        currentPlayer={currentPlayer}
-        timeSet={timeSet}
-        board={board}
-        swapPlayer={swapPlayer}
-      /> */}
+      {gameMode === GameModes.ONLINE ? <PlayerTimer /> : <></>}
     </div>
   );
 };

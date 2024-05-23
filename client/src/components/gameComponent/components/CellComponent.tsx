@@ -1,7 +1,8 @@
-import React, { FC } from "react";
+import React, { FC, useContext, useState } from "react";
 import { Cell } from "../models/Cell";
 import { Colors } from "../models/Colors";
 import { King } from "../models/pieces/King";
+import { GameDataContext } from "../contexts/gameContext";
 
 interface CellProps {
   cell: Cell;
@@ -10,10 +11,15 @@ interface CellProps {
 }
 
 const CellComponent: FC<CellProps> = ({ cell, selected, click }) => {
+  const { gameStatus } = useContext(GameDataContext);
   return (
     <div
       className={["cell", cell.color, selected ? "selected" : ""].join(" ")}
-      onClick={() => click(cell)}
+      onClick={() => {
+        if (gameStatus === "started") {
+          click(cell);
+        }
+      }}
     >
       {cell.available && !cell.piece && <div className="available"></div>}
       {cell.available && cell.piece && <div className="availableToTake"></div>}

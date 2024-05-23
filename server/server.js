@@ -41,20 +41,35 @@ const io = require("socket.io")(server, {
   },
 });
 
+const playersId = [];
+
 io.on("connection", (socket) => {
   socket.on("send-msg", (message, room) => {
     if (room === "") {
-      socket.broadcast.emit("receive", message);
+      socket.broadcast.emit("receive-msg", message);
     } else {
-      socket.to(room).emit("receive", message);
+      socket.to(room).emit("receive-msg", message);
     }
   });
   socket.on("join-room", (room) => {
     socket.join(room);
   });
+  socket.on("fetch-opponent", (id, callback) => {
+    if (playersId.length) {
+      // socket.to(id).emit("receive-opponent", playersId[playersId.length - 1]);
+      socket.to(playersId[playersId.length - 1]).emit("receive-opponent", id);
+      console.log(`${id} vs ${playersId[playersId.length - 1]}`);
+      callback({
+        opponent: playersId[playersId.length - 1],
+      });
+      playersId.pop();
+    } else {
+      playersId.push(id);
+    }
+  });
   socket.on("make-move", (id, x, y, xx, yy, opponent) => {
-    socket.to(opponent).emit("receive-move", id, x, y, xx, yy);
     console.log(id, opponent, x, y, xx, yy);
+    socket.to(opponent).emit("receive-move", id, x, y, xx, yy);
   });
 });
 

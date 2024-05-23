@@ -10,9 +10,9 @@ export const GameDataContext = createContext<any>({});
 export const GameDataProvider: FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [gameType, setGameType] = useState<"online" | "computer" | "puzzle">(
-    "computer"
-  );
+  const [gameStatus, setGameStatus] = useState<
+    "lobby" | "awaiting" | "started" | "ended"
+  >("lobby");
   const [board, setBoard] = useState(new Board());
   const [whitePlayer, setWhitePlayer] = useState(new Player(Colors.WHITE));
   const [blackPlayer, setBlackPlayer] = useState(new Player(Colors.BLACK));
@@ -60,6 +60,8 @@ export const GameDataProvider: FC<{ children: React.ReactNode }> = ({
   return (
     <GameDataContext.Provider
       value={{
+        gameStatus,
+        setGameStatus,
         playerColor,
         setPlayerColor,
         gameMode,
