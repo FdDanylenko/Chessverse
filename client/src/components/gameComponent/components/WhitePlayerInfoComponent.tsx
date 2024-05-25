@@ -1,7 +1,7 @@
 import React, { FC, useContext } from "react";
 import LostPieces from "./LostPieces";
 import { Board } from "../models/Board";
-import PlayerTimer from "./PlayerTimer";
+import PlayerTimer from "./WhitePlayerTimer";
 import { Player } from "../models/Player";
 import { GameDataContext } from "../contexts/gameContext";
 import { GameModes } from "../models/GameModes";
@@ -15,7 +15,8 @@ interface PlayerInfoComponentProps {
 
 const PlayerInfoComponent = () => {
   // const PlayerInfoComponent: FC<PlayerInfoComponentProps> = ({board, currentPlayer, timeSet, swapPlayer}) => {
-  const { gameMode, board, currentPlayer, swapPlayer } = useContext(GameDataContext);
+  const { gameMode, board, currentPlayer, swapPlayer } =
+    useContext(GameDataContext);
   return (
     <div className="info-section">
       <div className="player-info">

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import BoardComponent from "./components/BoardComponent";
-import PlayerInfoComponent from "./components/PlayerInfoComponent";
+import PlayerInfoComponent from "./components/WhitePlayerInfoComponent";
 import { Board } from "./models/Board";
 import { Player } from "./models/Player";
 import { Colors } from "./models/Colors";
 import PawnPromotionComponent from "./components/PawnPromotionComponent";
-import BotInfoComponent from "./components/OpponentInfoComponent";
+import BotInfoComponent from "./components/BlackPlayerInfoComponent";
 import HistoryComponent from "./components/HistoryComponent";
 import GameResult from "./components/GameResult";
 import BoardTestingInfo from "./components/BoardTestingInfo";

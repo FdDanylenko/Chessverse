@@ -4,16 +4,19 @@ import { Colors } from "../models/Colors";
 import { Board } from "../models/Board";
 import { GameDataContext } from "../contexts/gameContext";
 
-const BotTimer = () => {
-  const { board, timeSet, currentPlayer, swapPlayer } =
+const PlayerTimer = () => {
+  const { playerColor, gameStatus, currentPlayer, timeSet, board, swapPlayer } =
     useContext(GameDataContext);
   const [time, setTime] = useState(timeSet);
   const timer = useRef<null | ReturnType<typeof setInterval>>(null);
   var seconds = Math.floor(time % 60);
   var minutes = Math.floor((time / 60) % 60);
+
   useEffect(() => {
-    startTimer();
-  }, [currentPlayer]);
+    if (gameStatus === "started") {
+      startTimer();
+    }
+  }, [currentPlayer, gameStatus]);
 
   useEffect(() => {
     restartTimer();
@@ -34,7 +37,7 @@ const BotTimer = () => {
       clearInterval(timer.current);
     }
     const callBack =
-      currentPlayer?.color === Colors.BLACK
+      currentPlayer?.color === Colors.WHITE
         ? decrementTimer
         : dontDecrementTimer;
     timer.current = setInterval(callBack, 1000);
@@ -46,7 +49,7 @@ const BotTimer = () => {
         return prev - 1;
       } else {
         clearInterval(timer.current!);
-        board.setWinner("White", "time run out");
+        board.setWinner("Black", "time run out");
         swapPlayer();
         return prev;
       }
@@ -64,4 +67,4 @@ const BotTimer = () => {
   );
 };
 
-export default BotTimer;
+export default PlayerTimer;

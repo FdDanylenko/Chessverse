@@ -22,6 +22,9 @@ body {
   height: 100%;
   background-color: #302e2b;
 }
+.side-menu > .wrapper {
+  background-color: transparent;
+}
 .game {
   height: 100%;
   width: 1100px;
@@ -74,6 +77,10 @@ body {
   aspect-ratio: 1 / 1;
 }
 
+.board.rotated {
+  transform: rotate(180deg);
+}
+
 .cell {
   aspect-ratio: 1 / 1;
   position: relative;
@@ -89,6 +96,10 @@ body {
   position: relative;
   z-index: 1;
 }
+.cell.rotated img {
+  transform: rotate(180deg);
+}
+
 .white {
   background-color: #e9edcc;
 }

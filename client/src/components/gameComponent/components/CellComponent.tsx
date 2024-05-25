@@ -11,10 +11,15 @@ interface CellProps {
 }
 
 const CellComponent: FC<CellProps> = ({ cell, selected, click }) => {
-  const { gameStatus } = useContext(GameDataContext);
+  const { gameStatus, playerColor } = useContext(GameDataContext);
   return (
     <div
-      className={["cell", cell.color, selected ? "selected" : ""].join(" ")}
+      className={[
+        "cell",
+        // playerColor === Colors.BLACK ? "rotated" : "",
+        cell.color,
+        selected ? "selected" : "",
+      ].join(" ")}
       onClick={() => {
         if (gameStatus === "started") {
           click(cell);

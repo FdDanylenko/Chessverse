@@ -14,10 +14,12 @@ import { Board } from "./gameComponent/models/Board";
 import BoardComponentPreview from "./gameComponent/components/BoardComponentPreview";
 import { GameDataContext } from "./gameComponent/contexts/gameContext";
 import { GameModes } from "./gameComponent/models/GameModes";
+import { Colors } from "./gameComponent/models/Colors";
 
 const HomeComponent = () => {
   const { user, setUser, accessToken, setAccessToken } = useAuth();
-  const { gameMode, setGameMode, setGameStatus } = useContext(GameDataContext);
+  const { gameMode, setPlayerColor, setGameMode, setGameStatus } =
+    useContext(GameDataContext);
   const [board, setBoard] = useState(() => {
     const newBoard = new Board();
     newBoard.initCells();
@@ -30,6 +32,10 @@ const HomeComponent = () => {
     newBoard.addPiecesPreviewPuzzle();
     return newBoard;
   });
+
+  useEffect(() => {
+    setPlayerColor(Colors.WHITE);
+  }, []);
 
   const navigate = useNavigate();
 

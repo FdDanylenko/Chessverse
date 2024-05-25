@@ -25,6 +25,7 @@ const BoardComponent = () => {
     setGameStatus,
     gameMode,
     playerColor,
+    setPlayerColor,
     board,
     setBoard,
     currentPlayer,
@@ -47,6 +48,7 @@ const BoardComponent = () => {
     if (gameStatus === "awaiting") {
       socket.emit("fetch-opponent", socket.id, (response: any) => {
         setOpponent(response.opponent);
+        setPlayerColor(Colors.BLACK);
         setGameStatus("started");
         console.log(`Opponent id: ${response.opponent}`);
       });
@@ -192,7 +194,8 @@ const BoardComponent = () => {
 
   return (
     <>
-      <div className="board">
+      {/* <div className={`board ${playerColor === Colors.BLACK ? "rotated" : ""}`}> */}
+      <div className={`board`}>
         {board.cells.map((row: any, index: any) => (
           <React.Fragment key={index}>
             {row.map((cell: any) => (

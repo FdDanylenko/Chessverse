@@ -1,3 +1,8 @@
+.cell.rotated::before,
+.cell.rotated::after {
+  transform: rotate(180deg);
+}
+
 .cell:nth-child(16n + 1)::before {
   content: "";
   color: #779954;

@@ -3,6 +3,7 @@ import { Board } from "../models/Board";
 import { Cell } from "../models/Cell";
 import { GameDataContext } from "../contexts/gameContext";
 import LobbyComponent from "../../LobbyComponent";
+import LoaderComponent from "../../LoaderComponent";
 
 interface BoardProps {
   board: Board;
@@ -19,6 +20,8 @@ const SideMenu: FC<BoardProps> = ({ board, setBoard, restart }) => {
     <div className="side-menu">
       {gameStatus === "lobby" ? (
         <LobbyComponent />
+      ) : gameStatus === "awaiting" ? (
+        <LoaderComponent />
       ) : (
         <>
           <div className="chat"></div>

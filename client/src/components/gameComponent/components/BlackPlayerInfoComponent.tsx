@@ -2,7 +2,7 @@ import React, { FC, useContext } from "react";
 import LostPieces from "./LostPieces";
 import { Board } from "../models/Board";
 import { Player } from "../models/Player";
-import BotTimer from "./OpponentTimer";
+import BotTimer from "./BlackPlayerTimer";
 import { GameDataContext } from "../contexts/gameContext";
 import { GameModes } from "../models/GameModes";
 
