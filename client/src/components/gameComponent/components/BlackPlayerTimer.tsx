@@ -11,13 +11,14 @@ const BotTimer = () => {
   const timer = useRef<null | ReturnType<typeof setInterval>>(null);
   var seconds = Math.floor(time % 60);
   var minutes = Math.floor((time / 60) % 60);
+
   useEffect(() => {
     startTimer();
-  }, [currentPlayer]);
+  }, [currentPlayer, gameStatus]);
 
   useEffect(() => {
     restartTimer();
-  }, [timeSet]);
+  }, [timeSet, gameStatus]);
 
   useEffect(() => {
     if (board.endGame) {
@@ -34,7 +35,7 @@ const BotTimer = () => {
       clearInterval(timer.current);
     }
     const callBack =
-      currentPlayer?.color === Colors.BLACK
+      currentPlayer?.color === Colors.BLACK && gameStatus === "started"
         ? decrementTimer
         : dontDecrementTimer;
     timer.current = setInterval(callBack, 1000);

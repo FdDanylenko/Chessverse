@@ -71,6 +71,20 @@ io.on("connection", (socket) => {
     console.log(id, opponent, x, y, xx, yy);
     socket.to(opponent).emit("receive-move", id, x, y, xx, yy);
   });
+  socket.on("resigned", (opponent) => {
+    console.log("Game aborted");
+    socket.to(opponent).emit("resigned");
+  });
+  socket.on(
+    "gameResult",
+    (username, player1, player2, reason, result, date) => {
+      console.log(
+        `Game result: ${username} ${
+          result === "won" || result === "lost" ? result : "got draw"
+        } by ${reason} - ${date}. IDs: ${player1} ${player2}`
+      );
+    }
+  );
 });
 
 app.get("/", (req, res) => {

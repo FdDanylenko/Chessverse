@@ -20,7 +20,7 @@ const PlayerTimer = () => {
 
   useEffect(() => {
     restartTimer();
-  }, [timeSet]);
+  }, [timeSet, gameStatus]);
 
   useEffect(() => {
     if (board.endGame) {
@@ -37,7 +37,7 @@ const PlayerTimer = () => {
       clearInterval(timer.current);
     }
     const callBack =
-      currentPlayer?.color === Colors.WHITE
+      currentPlayer?.color === Colors.WHITE && gameStatus === "started"
         ? decrementTimer
         : dontDecrementTimer;
     timer.current = setInterval(callBack, 1000);
@@ -45,13 +45,15 @@ const PlayerTimer = () => {
 
   function decrementTimer() {
     setTime((prev: any) => {
-      if (prev > 0) {
-        return prev - 1;
-      } else {
-        clearInterval(timer.current!);
-        board.setWinner("Black", "time run out");
-        swapPlayer();
-        return prev;
+      if (gameStatus === "started") {
+        if (prev > 0) {
+          return prev - 1;
+        } else {
+          clearInterval(timer.current!);
+          board.setWinner("Black", "time run out");
+          swapPlayer();
+          return prev;
+        }
       }
     });
   }

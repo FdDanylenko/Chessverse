@@ -19,7 +19,7 @@ export const GameDataProvider: FC<{ children: React.ReactNode }> = ({
   const [timeSet, setTimeSet] = useState<number>(900);
   const [currentPlayer, setCurrentPlayer] = useState<Player>(whitePlayer);
   const [playerColor, setPlayerColor] = useState<Colors>(Colors.WHITE);
-  const [gameMode, setGameMode] = useState<GameModes>(GameModes.SANDBOX);
+  const [gameMode, setGameMode] = useState<GameModes>(GameModes.PRESELECTED);
   const [promotionPiece, setPromotionPiece] = useState<PiecesNames>();
   const [isPromotionDialogOpen, setIsPromotionDialogOpen] = useState<
     true | false
@@ -33,7 +33,10 @@ export const GameDataProvider: FC<{ children: React.ReactNode }> = ({
     newBoard.initCells();
     newBoard.addPieces();
     setBoard(newBoard);
-    // setTimeSet(Math.random);
+    let tempTimeSet = timeSet;
+    setTimeSet(0);
+    setTimeSet(tempTimeSet);
+    setGameStatus("lobby");
   }
 
   function swapPlayer() {

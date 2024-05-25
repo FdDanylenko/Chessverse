@@ -1,19 +1,7 @@
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useEffect } from "react";
 import { Player } from "../models/Player";
 import { Colors } from "../models/Colors";
 import { GameDataContext } from "../contexts/gameContext";
-
-interface GameResultProps {
-  isGameResultDialogOpen: boolean;
-  setIsGameResultDialogOpen: (isGameResultDialogOpen: boolean) => void;
-  closeDialog: () => void;
-  restart: () => void;
-  setCurrentPlayer: (currentPlayer: Player) => void;
-  whitePlayer: Player;
-  winner: string;
-  reason: string;
-  // setTimeSet: (number: number) => void;
-}
 
 const GameResult = () => {
   // const GameResult: FC<GameResultProps> = ({isGameResultDialogOpen, setIsGameResultDialogOpen, closeDialog, winner, reason, restart, setCurrentPlayer, whitePlayer, setTimeSet}) => {
@@ -22,10 +10,14 @@ const GameResult = () => {
     isGameResultDialogOpen,
     setIsGameResultDialogOpen,
     closeGameResultDialog,
+    timeSet,
+    setTimeSet,
     restart,
+    setGameStatus,
     setCurrentPlayer,
     whitePlayer,
   } = useContext(GameDataContext);
+
   function openDialog() {
     setIsGameResultDialogOpen(true);
   }
@@ -38,8 +30,8 @@ const GameResult = () => {
   function restartGame() {
     restart();
     console.clear();
+    setGameStatus("lobby");
     setCurrentPlayer(whitePlayer);
-    // setTimeSet(Math.random());
   }
   if (!isGameResultDialogOpen) {
     return null;

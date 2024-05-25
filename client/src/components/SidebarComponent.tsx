@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import useSettings from "../hooks/useSettings";
 import logo from "../assets/logo-grey.png";
 import { Theme, SidebarCollapsed } from "../models/settings";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import useServerPrivate from "../hooks/useServerPrivate";
+import { GameDataContext } from "./gameComponent/contexts/gameContext";
+import { GameModes } from "./gameComponent/models/GameModes";
 
 const SidebarComponent = () => {
   const { themeUI, setThemeUI } = useSettings();
   const { sidebarCollapsed, setSidebarCollapsed } = useSettings();
   const { setUser, setAccessToken } = useAuth();
+  const { setGameMode, setGameStatus } = useContext(GameDataContext);
   const navigate = useNavigate();
   const serverPrivate = useServerPrivate();
 
@@ -52,7 +55,14 @@ const SidebarComponent = () => {
           </span>
         </Link>
 
-        <Link to={"play"} className="navigation-option-container">
+        <a
+          className="navigation-option-container"
+          onClick={() => {
+            setGameMode(GameModes.PRESELECTED);
+            setGameStatus("lobby");
+            navigate("/play");
+          }}
+        >
           <span className="navigation-option-icon play"></span>
           <span
             className={`navigation-option-body ${
@@ -61,7 +71,7 @@ const SidebarComponent = () => {
           >
             Play
           </span>
-        </Link>
+        </a>
         <Link to={"puzzles"} className="navigation-option-container">
           <span className="navigation-option-icon puzzles"></span>
           <span

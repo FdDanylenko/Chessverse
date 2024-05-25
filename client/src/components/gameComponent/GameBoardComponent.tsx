@@ -19,6 +19,7 @@ function App() {
     setBoard,
     whitePlayer,
     blackPlayer,
+    playerColor,
     currentPlayer,
     setCurrentPlayer,
     timeSet,
@@ -51,11 +52,19 @@ function App() {
         <>
           <div className="game-field">
             {/* <HistoryComponent moves={board.blackMoves} /> */}
-            <BotInfoComponent />
+            {playerColor === Colors.WHITE ? (
+              <BotInfoComponent />
+            ) : (
+              <PlayerInfoComponent />
+            )}
             <PawnPromotionComponent />
             <GameResult />
             <BoardComponent />
-            <PlayerInfoComponent />
+            {playerColor === Colors.WHITE ? (
+              <PlayerInfoComponent />
+            ) : (
+              <BotInfoComponent />
+            )}
             {/* <HistoryComponent moves={board.whiteMoves} /> */}
           </div>
           <SideMenu board={board} setBoard={setBoard} restart={restart} />

@@ -16,12 +16,15 @@ const CellComponent: FC<CellProps> = ({ cell, selected, click }) => {
     <div
       className={[
         "cell",
-        // playerColor === Colors.BLACK ? "rotated" : "",
+        playerColor === Colors.BLACK ? "rotated" : "",
         cell.color,
         selected ? "selected" : "",
       ].join(" ")}
       onClick={() => {
-        if (gameStatus === "started") {
+        if (
+          gameStatus === "started" &&
+          (!cell.piece || playerColor === cell.piece?.color || cell.available)
+        ) {
           click(cell);
         }
       }}

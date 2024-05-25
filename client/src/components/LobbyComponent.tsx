@@ -1,11 +1,75 @@
 import { useContext } from "react";
 import { GameDataContext } from "./gameComponent/contexts/gameContext";
 import { GameModes } from "./gameComponent/models/GameModes";
+import { useNavigate } from "react-router-dom";
+import promoItemIconComputer from "../assets/home/computer.f36f0d84.svg";
+import promoItemIconHandshake from "../assets/home/handshake.8c90be47.svg";
+import promoItemIconPlay from "../assets/home/playwhite.cea685ba.svg";
+import promoItemIconPuzzles from "../assets/home/puzzles.8f98f891.svg";
+import promoItemIconSandbox from "../assets/home/review.b44ad9a4.svg";
 
 const LobbyComponent = () => {
-  const { gameMode, setGameStatus, timeSet, setTimeSet } =
+  const { gameMode, setGameMode, setGameStatus, timeSet, setTimeSet } =
     useContext(GameDataContext);
-  return gameMode === GameModes.ONLINE ? (
+  const navigate = useNavigate();
+  const navigateToLobby = (gm: GameModes) => {
+    setGameMode(gm);
+    setGameStatus("lobby");
+    navigate("/play");
+  };
+  return gameMode === GameModes.PRESELECTED ? (
+    <div className="side-menu-container">
+      <div className="promo-item-links-container" style={{ height: "357px" }}>
+        <div
+          className="play-quick-link"
+          onClick={() => {
+            navigateToLobby(GameModes.SANDBOX);
+          }}
+        >
+          <img
+            className="play-quick-link-icon"
+            src={promoItemIconSandbox}
+          ></img>
+          <div className="play-quick-link-body">Play Sandbox</div>
+        </div>
+        <div
+          className="play-quick-link"
+          onClick={() => {
+            navigateToLobby(GameModes.ONLINE);
+          }}
+        >
+          <img className="play-quick-link-icon" src={promoItemIconPlay}></img>
+          <div className="play-quick-link-body">Play 15 | 10</div>
+        </div>
+        <div className="play-quick-link">
+          <img
+            className="play-quick-link-icon"
+            src={promoItemIconHandshake}
+          ></img>
+          <div className="play-quick-link-body">Play a Friend</div>
+        </div>
+        <div
+          className="play-quick-link"
+          onClick={() => {
+            navigateToLobby(GameModes.COMPUTER);
+          }}
+        >
+          <img
+            className="play-quick-link-icon"
+            src={promoItemIconComputer}
+          ></img>
+          <div className="play-quick-link-body">Play Computer</div>
+        </div>
+        <div className="play-quick-link">
+          <img
+            className="play-quick-link-icon"
+            src={promoItemIconPuzzles}
+          ></img>
+          <div className="play-quick-link-body">Solve Puzzle</div>
+        </div>
+      </div>
+    </div>
+  ) : gameMode === GameModes.ONLINE ? (
     <div className="side-menu-container">
       <button className="lobby-game-time">
         <span

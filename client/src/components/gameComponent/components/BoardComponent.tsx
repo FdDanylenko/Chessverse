@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useRef, useState } from "react";
 import { Board } from "../models/Board";
 import CellComponent from "./CellComponent";
 import { Cell } from "../models/Cell";
@@ -13,6 +13,8 @@ import { socket } from "../socket";
 import { Piece } from "../models/pieces/Piece";
 import { GameDataContext } from "../contexts/gameContext";
 import { GameModes } from "../models/GameModes";
+import { format } from "date-fns";
+import useAuth from "../../../hooks/useAuth";
 
 const BoardComponent = () => {
   let moveSound = require("./../assets/move-self.mp3");
@@ -20,6 +22,7 @@ const BoardComponent = () => {
   function PlaySound(sound: any) {
     new Audio(sound).play();
   }
+  const { user } = useAuth();
   const {
     gameStatus,
     setGameStatus,
@@ -30,12 +33,21 @@ const BoardComponent = () => {
     setBoard,
     currentPlayer,
     swapPlayer,
+    setIsGameResultDialogOpen,
   } = useContext(GameDataContext);
   const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
   const [opponent, setOpponent] = useState("");
+  const opponentRef = useRef(opponent);
+  const gameStatusRef = useRef(gameStatus);
   const [socketId, setSocketId] = useState("");
 
   useEffect(() => {
+    opponentRef.current = opponent;
+    gameStatusRef.current = gameStatus;
+  }, [opponent, gameStatus]);
+
+  useEffect(() => {
+    setIsGameResultDialogOpen(false);
     if (gameMode === GameModes.ONLINE) {
       socket.on("connect", () => {
         if (socket.id) {
@@ -43,7 +55,18 @@ const BoardComponent = () => {
         }
       });
     }
+    return () => {
+      if (gameStatusRef.current === "started") {
+        board.setWinner(getOppositeColor(playerColor), "Resigned");
+        console.log(`Game lost: resigned to ${opponentRef.current}`);
+        socket.emit("resigned", opponentRef.current);
+        sendGameResults("resigning", "lost");
+        setGameStatus("ended");
+        socket.off("connect");
+      }
+    };
   }, []);
+
   useEffect(() => {
     if (gameStatus === "awaiting") {
       socket.emit("fetch-opponent", socket.id, (response: any) => {
@@ -54,16 +77,24 @@ const BoardComponent = () => {
       });
       console.log(`My id: ${socket.id}`);
     }
-  }, [gameStatus]);
-  useEffect(() => {
     if (true) {
       socket.on("receive-opponent", (id) => {
         setOpponent(id);
         setGameStatus("started");
+        socket.off("connect");
         console.log(`Opponent id: ${id}`);
+      });
+      socket.on("resigned", (id) => {
+        sendGameResults("resigning", "won");
+        board.setWinner(playerColor, "Resigned");
+        setIsGameResultDialogOpen(true);
+        setOpponent("");
+        setGameStatus("ended");
+        console.log("Gave won: opponent resigned");
       });
       return () => {
         socket.off("receive-opponent");
+        socket.off("resigned");
       };
     }
   }, [gameStatus]);
@@ -81,6 +112,21 @@ const BoardComponent = () => {
     };
   }, [socket, setSelectedCell, setOpponent, board]);
 
+  const sendGameResults = (
+    reason: "checkmate" | "stalemate" | "resigning",
+    result: "won" | "lost" | "draw"
+  ) => {
+    socket.emit(
+      "gameResult",
+      user.username,
+      socket.id,
+      opponent,
+      reason,
+      result,
+      format(new Date(), "yyyy-MM-dd")
+    );
+  };
+
   function click(cell: Cell) {
     if (selectedCell !== null && selectedCell.piece?.canMove(cell)) {
       cell.piece ? PlaySound(captureSound) : PlaySound(moveSound);
@@ -96,15 +142,19 @@ const BoardComponent = () => {
       let myKing: Cell | void = board.findKing(board, currentPlayer.color);
       if (((enemyKing as Cell).piece as King).isCheckMate) {
         board.setWinner(currentPlayer.color, "Checkmate");
+        sendGameResults("checkmate", "won");
       }
       if (((myKing as Cell).piece as King).isCheckMate) {
         board.setWinner(getOppositeColor(currentPlayer), "Checkmate");
+        sendGameResults("checkmate", "lost");
       }
       if (((enemyKing as Cell).piece as King).isStaleMate) {
         board.setWinner("Draw", "StaleMate");
+        sendGameResults("stalemate", "draw");
       }
       if (((myKing as Cell).piece as King).isStaleMate) {
         board.setWinner("Draw", "StaleMate");
+        sendGameResults("stalemate", "draw");
       }
       if (gameMode === GameModes.ONLINE) {
         socket.emit(
@@ -194,8 +244,8 @@ const BoardComponent = () => {
 
   return (
     <>
-      {/* <div className={`board ${playerColor === Colors.BLACK ? "rotated" : ""}`}> */}
-      <div className={`board`}>
+      <div className={`board ${playerColor === Colors.BLACK ? "rotated" : ""}`}>
+        {/* <div className={`board`}> */}
         {board.cells.map((row: any, index: any) => (
           <React.Fragment key={index}>
             {row.map((cell: any) => (
