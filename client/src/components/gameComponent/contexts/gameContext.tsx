@@ -19,6 +19,8 @@ export const GameDataProvider: FC<{ children: React.ReactNode }> = ({
   const [timeSet, setTimeSet] = useState<number>(900);
   const [currentPlayer, setCurrentPlayer] = useState<Player>(whitePlayer);
   const [playerColor, setPlayerColor] = useState<Colors>(Colors.WHITE);
+  const [movesCount, setMovesCount] = useState<Number>(0);
+  const [opponentUsername, setOpponentUsername] = useState<String>("Opponent");
   const [gameMode, setGameMode] = useState<GameModes>(GameModes.PRESELECTED);
   const [promotionPiece, setPromotionPiece] = useState<PiecesNames>();
   const [isPromotionDialogOpen, setIsPromotionDialogOpen] = useState<
@@ -36,6 +38,7 @@ export const GameDataProvider: FC<{ children: React.ReactNode }> = ({
     let tempTimeSet = timeSet;
     setTimeSet(0);
     setTimeSet(tempTimeSet);
+    setMovesCount(0);
     setGameStatus("lobby");
   }
 
@@ -63,6 +66,10 @@ export const GameDataProvider: FC<{ children: React.ReactNode }> = ({
   return (
     <GameDataContext.Provider
       value={{
+        opponentUsername,
+        setOpponentUsername,
+        movesCount,
+        setMovesCount,
         gameStatus,
         setGameStatus,
         playerColor,

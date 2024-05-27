@@ -12,6 +12,17 @@ const userSchema = new Schema({
   status: String,
   aboutMe: String,
   profilePicture: String,
+  elo: Number,
+  gameResults: [
+    {
+      playerUsername: String,
+      opponentUsername: String,
+      reason: String,
+      result: String,
+      movesCount: Number,
+      date: String,
+    },
+  ],
   refreshToken: String,
 });
 

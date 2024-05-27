@@ -209,7 +209,29 @@ const HomeComponent = () => {
               <div className="completed-games-label moves">Moves</div>
               <div className="completed-games-label date">Date</div>
             </div>
-            <div className="completed-games-list">No games to show yet</div>
+            <div className="completed-games-list">
+              {user.gameResults.map((game: any, index: any) => (
+                <>
+                  <div className="completed-games-item" key={index}>
+                    <div className="completed-games-data players">
+                      <div className="player-name">{game.playerUsername}</div>
+                      <div className="player-name">{game.opponentUsername}</div>
+                    </div>
+                    <div className="completed-games-data result">
+                      {game.result}
+                    </div>
+                    <div className="completed-games-data accuracy">
+                      {game.reason}
+                    </div>
+                    <div className="completed-games-data moves">
+                      {game.movesCount}
+                    </div>
+                    <div className="completed-games-data date">{game.date}</div>
+                  </div>
+                  <div className="completed-games-list-divider"></div>
+                </>
+              ))}
+            </div>
           </div>
         </main>
         <footer className="footer">

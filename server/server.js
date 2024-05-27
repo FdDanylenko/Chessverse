@@ -7,6 +7,7 @@ const app = express();
 const server = require("http").Server(app);
 const PORT = process.env.PORT;
 const mongoose = require("mongoose");
+const registerGameResult = require("./middleware/registerGameResult");
 
 const connectDB = async () => {
   try {
@@ -23,13 +24,14 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (!origin || whiteList.indexOf(origin) !== -1 || true) {
-        callback(null, true);
-      } else {
-        callback(new Error("Access denied"));
-      }
-    },
+    // origin: (origin, callback) => {
+    //   if (!origin || whiteList.indexOf(origin) !== -1 || true) {
+    //     callback(null, true);
+    //   } else {
+    //     callback(new Error("Access denied"));
+    //   }
+    // },
+    origin: "*",
     credentials: true,
     originsSuccessStatus: 200,
   })
@@ -54,17 +56,18 @@ io.on("connection", (socket) => {
   socket.on("join-room", (room) => {
     socket.join(room);
   });
-  socket.on("fetch-opponent", (id, callback) => {
+  socket.on("fetch-opponent", (data, callback) => {
+    console.log(playersId);
     if (playersId.length) {
-      // socket.to(id).emit("receive-opponent", playersId[playersId.length - 1]);
-      socket.to(playersId[playersId.length - 1]).emit("receive-opponent", id);
-      console.log(`${id} vs ${playersId[playersId.length - 1]}`);
+      socket
+        .to(playersId[playersId.length - 1].id)
+        .emit("receive-opponent", data.id, data.username);
       callback({
         opponent: playersId[playersId.length - 1],
       });
       playersId.pop();
     } else {
-      playersId.push(id);
+      playersId.push({ id: data.id, username: data.username });
     }
   });
   socket.on("make-move", (id, x, y, xx, yy, opponent) => {
@@ -77,11 +80,19 @@ io.on("connection", (socket) => {
   });
   socket.on(
     "gameResult",
-    (username, player1, player2, reason, result, date) => {
+    (username, opponentUsername, reason, result, movesCount, date) => {
+      registerGameResult(
+        username,
+        opponentUsername,
+        reason,
+        result,
+        movesCount,
+        date
+      );
       console.log(
         `Game result: ${username} ${
           result === "won" || result === "lost" ? result : "got draw"
-        } by ${reason} - ${date}. IDs: ${player1} ${player2}`
+        } by ${reason} - ${date}. moves: ${movesCount}`
       );
     }
   );

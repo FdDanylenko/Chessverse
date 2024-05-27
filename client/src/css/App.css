@@ -1,8 +1,9 @@
 .App {
   color: #ffffff;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #312e2b;
   display: flex;
+  position: relative;
 }
 
 .side-menu-container {

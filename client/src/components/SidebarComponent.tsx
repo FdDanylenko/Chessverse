@@ -51,7 +51,7 @@ const SidebarComponent = () => {
               sidebarCollapsed === SidebarCollapsed.False ? "" : "collapsed"
             }`}
           >
-            Chessverse
+            Home
           </span>
         </Link>
 
@@ -90,6 +90,36 @@ const SidebarComponent = () => {
             }`}
           >
             Learn
+          </span>
+        </Link>
+        <Link to={"learn"} className="navigation-option-container">
+          <span className="navigation-option-icon watch"></span>
+          <span
+            className={`navigation-option-body ${
+              sidebarCollapsed === SidebarCollapsed.False ? "" : "collapsed"
+            }`}
+          >
+            Watch
+          </span>
+        </Link>
+        <Link to={"learn"} className="navigation-option-container">
+          <span className="navigation-option-icon news"></span>
+          <span
+            className={`navigation-option-body ${
+              sidebarCollapsed === SidebarCollapsed.False ? "" : "collapsed"
+            }`}
+          >
+            News
+          </span>
+        </Link>
+        <Link to={"learn"} className="navigation-option-container">
+          <span className="navigation-option-icon social"></span>
+          <span
+            className={`navigation-option-body ${
+              sidebarCollapsed === SidebarCollapsed.False ? "" : "collapsed"
+            }`}
+          >
+            Social
           </span>
         </Link>
         <Link to={"more"} className="navigation-option-container">

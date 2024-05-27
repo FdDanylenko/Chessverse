@@ -1,11 +1,14 @@
 .sidebar {
   width: fit-content;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
   left: 0;
   background-color: #262522;
+  position: sticky;
+  top: 0;
 }
 .sidebar.collapsed {
   width: fit-content;
@@ -14,6 +17,15 @@
 .settings-container {
   color: #9e9d9c;
   margin-bottom: 20px;
+}
+
+.sidebar-settings-option-container {
+  margin-top: 7px;
+}
+
+.sidebar-settings-option-body {
+  font-size: 14px;
+  font-weight: 800px;
 }
 
 .sidebar-settings-option-icon::before {
@@ -57,9 +69,9 @@
 
 .navigation-container span {
   display: inline-block;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 30px;
-  font-weight: 600;
+  font-weight: 800;
 }
 .navigation-container span.header {
   margin: 0 10px;
@@ -113,6 +125,18 @@
 .navigation-option-icon.learn {
   background-position-x: -23px;
   background-position-y: -151px;
+}
+.navigation-option-icon.watch {
+  background-position-x: -23px;
+  background-position-y: -188px;
+}
+.navigation-option-icon.news {
+  background-position-x: -23px;
+  background-position-y: -337px;
+}
+.navigation-option-icon.social {
+  background-position-x: -23px;
+  background-position-y: -225px;
 }
 .navigation-option-icon.more {
   background-position-x: -22px;

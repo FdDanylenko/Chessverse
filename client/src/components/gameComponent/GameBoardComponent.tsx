@@ -67,7 +67,7 @@ function App() {
             )}
             {/* <HistoryComponent moves={board.whiteMoves} /> */}
           </div>
-          <SideMenu board={board} setBoard={setBoard} restart={restart} />
+          <SideMenu />
         </>
       </div>
     </div>

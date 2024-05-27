@@ -3,6 +3,7 @@ import { Cell } from "../models/Cell";
 import { Colors } from "../models/Colors";
 import { King } from "../models/pieces/King";
 import { GameDataContext } from "../contexts/gameContext";
+import { GameModes } from "../models/GameModes";
 
 interface CellProps {
   cell: Cell;
@@ -11,7 +12,7 @@ interface CellProps {
 }
 
 const CellComponent: FC<CellProps> = ({ cell, selected, click }) => {
-  const { gameStatus, playerColor } = useContext(GameDataContext);
+  const { gameStatus, gameMode, playerColor } = useContext(GameDataContext);
   return (
     <div
       className={[
@@ -23,7 +24,10 @@ const CellComponent: FC<CellProps> = ({ cell, selected, click }) => {
       onClick={() => {
         if (
           gameStatus === "started" &&
-          (!cell.piece || playerColor === cell.piece?.color || cell.available)
+          (!cell.piece ||
+            playerColor === cell.piece?.color ||
+            gameMode === GameModes.SANDBOX ||
+            cell.available)
         ) {
           click(cell);
         }

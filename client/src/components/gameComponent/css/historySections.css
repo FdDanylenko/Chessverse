@@ -1,11 +1,12 @@
 .history-box {
   display: flex;
+  flex-direction: column;
   width: calc(100% - 10px);
-  position: absolute;
   padding: 0 5px;
-  overflow-y: hidden;
-  overflow-x: scroll;
-  height: 2em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  /* height: 2em; */
+  height: 100%;
   background-color: #262522;
   border-radius: 5px;
   border: 0;

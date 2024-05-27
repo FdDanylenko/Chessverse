@@ -1,0 +1,45 @@
+.side-menu-sections {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.side-menu-section {
+  margin: 20px 20px;
+}
+
+.side-menu-chat {
+  background-color: #3b3936;
+  height: 200px;
+}
+.side-menu-history {
+  flex: 1;
+  overflow: hidden;
+}
+
+.side-menu-navigation {
+  margin: 20px 0 0 0;
+  padding: 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #21201e;
+}
+
+.game-nav-btn {
+  background-color: #3b3936;
+  border: none;
+  color: #9e9d9c;
+  height: 48px;
+  width: 20%;
+  border-radius: 5px;
+}
+.history-box-item {
+  display: flex;
+  justify-content: space-between;
+}
+.history-box-item-index {
+  min-width: 20%;
+}
+.history-box-item-move {
+  min-width: 40%;
+}

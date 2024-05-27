@@ -165,7 +165,14 @@ const LobbyComponent = () => {
       </div>
     </div>
   ) : (
-    <div></div>
+    <div className="side-menu-container">
+      <div
+        className="lobby-button-play button-green"
+        onClick={() => setGameStatus("started")}
+      >
+        Play
+      </div>
+    </div>
   );
 };
 

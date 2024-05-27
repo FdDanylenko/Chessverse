@@ -4,6 +4,7 @@ import { Cell } from "../models/Cell";
 import { GameDataContext } from "../contexts/gameContext";
 import LobbyComponent from "../../LobbyComponent";
 import LoaderComponent from "../../LoaderComponent";
+import HistoryComponent from "./HistoryComponent";
 
 interface BoardProps {
   board: Board;
@@ -11,8 +12,8 @@ interface BoardProps {
   restart: () => void;
 }
 
-const SideMenu: FC<BoardProps> = ({ board, setBoard, restart }) => {
-  const { gameStatus } = useContext(GameDataContext);
+const SideMenu = () => {
+  const { gameStatus, board, setBoard, restart } = useContext(GameDataContext);
   function resign() {
     // setTimeSet(Math.random());
   }
@@ -23,10 +24,12 @@ const SideMenu: FC<BoardProps> = ({ board, setBoard, restart }) => {
       ) : gameStatus === "awaiting" ? (
         <LoaderComponent />
       ) : (
-        <>
-          <div className="chat"></div>
-          <div className="history"></div>
-          <div className="navigation">
+        <div className="side-menu-sections">
+          <div className="side-menu-section side-menu-chat"></div>
+          <div className="side-menu-section side-menu-history">
+            <HistoryComponent />
+          </div>
+          <div className="side-menu-section side-menu-navigation">
             <button className="game-nav-btn" onClick={() => restart()}>
               New
             </button>
@@ -34,7 +37,7 @@ const SideMenu: FC<BoardProps> = ({ board, setBoard, restart }) => {
             <button className="game-nav-btn">Next</button>
             <button className="game-nav-btn">Resign</button>
           </div>
-        </>
+        </div>
       )}
     </div>
   );
