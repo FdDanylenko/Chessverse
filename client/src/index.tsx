@@ -16,7 +16,10 @@ import { SettingsContextProvider } from "./contexts/SettingsContext";
 import { GameDataProvider } from "./components/gameComponent/contexts/gameContext";
 
 const router = createBrowserRouter(
-  createRoutesFromElements(<Route path="/*" element={<App />} />)
+  createRoutesFromElements(<Route path="/*" element={<App />} />),
+  {
+    basename: "/Chessverse",
+  }
 );
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
