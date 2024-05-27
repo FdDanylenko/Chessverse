@@ -133,15 +133,17 @@ const BoardComponent = () => {
     reason: "checkmate" | "stalemate" | "resigning",
     result: "won" | "lost" | "draw"
   ) => {
-    socket.emit(
-      "gameResult",
-      user.username,
-      opponentUsername,
-      reason,
-      result,
-      movesCount,
-      format(new Date(), "yyyy-MM-dd")
-    );
+    if (gameMode === GameModes.ONLINE) {
+      socket.emit(
+        "gameResult",
+        user.username,
+        opponentUsername,
+        reason,
+        result,
+        movesCount,
+        format(new Date(), "yyyy-MM-dd")
+      );
+    }
   };
 
   function checkForGameEnd(reverse: boolean) {

@@ -17,32 +17,7 @@ interface Iteration {
 const HistoryComponent = () => {
   const { board } = useContext(GameDataContext);
   const lastElementRef = useRef<HTMLDivElement>(null);
-  const [moves, setMoves] = useState<Iteration[]>([
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-    { index: 1, white: "g", black: "h" },
-  ]);
+  const [moves, setMoves] = useState<Iteration[]>([]);
 
   useEffect(() => {
     if (board.whiteMoves.length > board.blackMoves.length) {
