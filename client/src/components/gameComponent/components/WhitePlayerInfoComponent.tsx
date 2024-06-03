@@ -29,7 +29,16 @@ const PlayerInfoComponent = () => {
   return (
     <div className="info-section">
       <div className="player-info">
-        <div className="player-icon"></div>
+        <img
+          className="home-profile-picture player-icon"
+          src={`${
+            playerColor === Colors.WHITE
+              ? user.profilePicture
+              : gameMode === GameModes.ONLINE
+              ? `http://localhost:5000/db/images/${opponentUsername}.jpg`
+              : `http://localhost:5000/db/images/default.jpg`
+          }`}
+        ></img>
         <div className="sub-info-box">
           <div className="player-name">
             {playerColor === Colors.WHITE ? user.username : opponentUsername}

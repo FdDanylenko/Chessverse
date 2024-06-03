@@ -24,6 +24,7 @@ const BoardComponent = () => {
   }
   const { user } = useAuth();
   const {
+    timeSet,
     gameStatus,
     setGameStatus,
     gameMode,
@@ -32,15 +33,19 @@ const BoardComponent = () => {
     board,
     setBoard,
     currentPlayer,
+    setCurrentPlayer,
     swapPlayer,
     setIsGameResultDialogOpen,
     movesCount,
     setMovesCount,
     opponentUsername,
     setOpponentUsername,
+    opponent,
+    setOpponent,
+    setChat,
   } = useContext(GameDataContext);
   const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
-  const [opponent, setOpponent] = useState("");
+  // const [opponent, setOpponent] = useState("");
   const opponentRef = useRef(opponent);
   const gameStatusRef = useRef(gameStatus);
   const [socketId, setSocketId] = useState("");
@@ -63,10 +68,13 @@ const BoardComponent = () => {
     return () => {
       if (gameStatusRef.current === "started") {
         board.setWinner(getOppositeColor(playerColor), "Resigned");
-        console.log(`Game lost: resigned to ${opponentRef.current}`);
         socket.emit("resigned", opponentRef.current);
         sendGameResults("resigning", "lost");
         setGameStatus("ended");
+        setChat([]);
+        setOpponentUsername("");
+        setOpponent("");
+        setCurrentPlayer(Colors.WHITE);
         socket.off("connect");
       }
     };
@@ -76,23 +84,20 @@ const BoardComponent = () => {
     if (gameStatus === "awaiting") {
       socket.emit(
         "fetch-opponent",
-        { id: socket.id, username: user.username },
+        { id: socket.id, username: user.username, timeSet },
         (response: any) => {
           setGameStatus("started");
           setOpponent(response.opponent.id);
           setOpponentUsername(response.opponent.username);
           setPlayerColor(Colors.BLACK);
-          console.log(`Opponent id: ${response.opponent.id}`);
         }
       );
-      console.log(`My id: ${socket.id}`);
     }
   }, [gameStatus]);
 
   useEffect(() => {
     if (true) {
       socket.on("receive-opponent", (id, opponentUsername) => {
-        console.log(`Opponent id: ${id}`);
         setGameStatus("started");
         setOpponent(id);
         setOpponentUsername(opponentUsername);
@@ -103,7 +108,6 @@ const BoardComponent = () => {
         setIsGameResultDialogOpen(true);
         setOpponent("");
         setGameStatus("ended");
-        console.log("Gave won: opponent resigned");
       });
       return () => {
         socket.off("receive-opponent");
@@ -140,7 +144,7 @@ const BoardComponent = () => {
         opponentUsername,
         reason,
         result,
-        movesCount,
+        board.whiteMoves.length + board.blackMoves.length,
         format(new Date(), "yyyy-MM-dd")
       );
     }

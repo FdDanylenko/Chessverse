@@ -26,7 +26,11 @@
 }
 
 .home-profile-picture {
+  object-fit: none;
+  object-fit: cover;
+  object-position: center;
   width: 30px;
+  height: 30px;
 }
 
 .home-username {

@@ -11,6 +11,7 @@
 @import url(SidebarComponent.css);
 @import url(Loader.css);
 @import url(HomeComponent.css);
+@import url(ProfileComponent.css);
 
 body {
   background-color: #262421;

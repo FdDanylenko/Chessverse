@@ -7,12 +7,19 @@ import { GameModes } from "../models/GameModes";
 
 export const GameDataContext = createContext<any>({});
 
+type chatMessage = {
+  id: Number;
+  author: String;
+  message: String;
+};
+
 export const GameDataProvider: FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [gameStatus, setGameStatus] = useState<
     "lobby" | "awaiting" | "started" | "ended"
   >("lobby");
+  const [chat, setChat] = useState<chatMessage[]>([]);
   const [board, setBoard] = useState(new Board());
   const [whitePlayer, setWhitePlayer] = useState(new Player(Colors.WHITE));
   const [blackPlayer, setBlackPlayer] = useState(new Player(Colors.BLACK));
@@ -29,6 +36,7 @@ export const GameDataProvider: FC<{ children: React.ReactNode }> = ({
   const [isGameResultDialogOpen, setIsGameResultDialogOpen] = useState<
     true | false
   >(false);
+  const [opponent, setOpponent] = useState("");
 
   function restart() {
     const newBoard = new Board();
@@ -66,6 +74,8 @@ export const GameDataProvider: FC<{ children: React.ReactNode }> = ({
   return (
     <GameDataContext.Provider
       value={{
+        chat,
+        setChat,
         opponentUsername,
         setOpponentUsername,
         movesCount,
@@ -96,6 +106,8 @@ export const GameDataProvider: FC<{ children: React.ReactNode }> = ({
         closePromotionDialog,
         showGameResultDialog,
         closeGameResultDialog,
+        opponent,
+        setOpponent,
       }}
     >
       {children}

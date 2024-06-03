@@ -15,6 +15,7 @@ import BoardComponentPreview from "./gameComponent/components/BoardComponentPrev
 import { GameDataContext } from "./gameComponent/contexts/gameContext";
 import { GameModes } from "./gameComponent/models/GameModes";
 import { Colors } from "./gameComponent/models/Colors";
+import { url } from "inspector";
 
 const HomeComponent = () => {
   const { user, setUser, accessToken, setAccessToken } = useAuth();
@@ -50,7 +51,10 @@ const HomeComponent = () => {
       <div className="home-container">
         <header className="home-header">
           <Link to={"/user"} className="home-user-info-container">
-            <img className="home-profile-picture" src={profilePicture}></img>
+            <img
+              className="home-profile-picture"
+              src={`${user.profilePicture}`}
+            ></img>
             <div>
               <span className="home-username">{user?.username}</span>
               <span
@@ -205,12 +209,12 @@ const HomeComponent = () => {
             <div className="completed-games-labels">
               <div className="completed-games-label players">Players</div>
               <div className="completed-games-label result">Result</div>
-              <div className="completed-games-label accuracy">Accuracy</div>
+              <div className="completed-games-label accuracy">Reason</div>
               <div className="completed-games-label moves">Moves</div>
               <div className="completed-games-label date">Date</div>
             </div>
             <div className="completed-games-list">
-              {user.gameResults.map((game: any, index: any) => (
+              {user.gameResults.slice(-5).map((game: any, index: any) => (
                 <>
                   <div className="completed-games-item" key={index}>
                     <div className="completed-games-data players">

@@ -3,6 +3,21 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { sendEmail } = require("../middleware/mailer");
 
+const uploadProfilePicture = async (req, res) => {
+  const { username } = req.body;
+  if (!username) {
+    return res.status(400).json({ message: "Username is required" });
+  }
+  const foundUser = await User.findOne({ username }).exec();
+  if (!foundUser) {
+    return res.sendStatus(401);
+  }
+  foundUser.profilePicture = `http://localhost:5000/db/images/${foundUser.username}.jpg`;
+  // foundUser.profilePicture = `https://chessverseapi.onrender.com/db/images?imagePath=users&imageName=${foundUser.username}`;
+  await foundUser.save();
+  res.status(200).json({ message: "User has been updated" });
+};
+
 const getUserData = async (req, res) => {
   const username = req.body.username;
   if (!username) {
@@ -34,6 +49,7 @@ const handleNewUser = async (req, res) => {
       username,
       email,
       password: hashedPassword,
+      profilePicture: "http://localhost:5000/db/images/default.jpg",
     });
     res.status(201).json({ success: `New user ${username} created!` });
   } catch (error) {
@@ -164,4 +180,5 @@ module.exports = {
   handleLogout,
   handleRefreshToken,
   handleUpdateProfile,
+  uploadProfilePicture,
 };

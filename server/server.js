@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin || whiteList.indexOf(origin) !== -1 || true) {
+      if (!origin || whiteList.indexOf(origin) !== -1) {
         callback(null, true);
       } else {
         callback(new Error("Access denied"));
@@ -42,31 +42,44 @@ const io = require("socket.io")(server, {
   },
 });
 
-const playersId = [];
+let playersId = [];
 
 io.on("connection", (socket) => {
-  socket.on("send-msg", (message, room) => {
-    if (room === "") {
-      socket.broadcast.emit("receive-msg", message);
-    } else {
-      socket.to(room).emit("receive-msg", message);
-    }
+  socket.on("send-msg", (opponent, message) => {
+    socket.to(opponent).emit("receive-msg", message);
+    // if (opponent === "") {
+    //   socket.broadcast.emit("receive-msg", message);
+    // } else {
+    // }
   });
   socket.on("join-room", (room) => {
     socket.join(room);
   });
   socket.on("fetch-opponent", (data, callback) => {
     console.log(playersId);
-    if (playersId.length) {
-      socket
-        .to(playersId[playersId.length - 1].id)
-        .emit("receive-opponent", data.id, data.username);
+    if (
+      playersId.length &&
+      playersId.some(
+        (element) => element.timeSet === data.timeSet && element.id !== data.id
+      )
+    ) {
+      const player = playersId.find(
+        (element) => element.timeSet === data.timeSet
+      );
+      socket.to(player.id).emit("receive-opponent", data.id, data.username);
       callback({
-        opponent: playersId[playersId.length - 1],
+        opponent: player,
       });
-      playersId.pop();
+      playersId = playersId.filter((element) => element.id !== player.id);
     } else {
-      playersId.push({ id: data.id, username: data.username });
+      if (playersId.some((element) => element.id === data.id)) {
+        playersId = playersId.filter((element) => element.id !== data.id);
+      }
+      playersId.push({
+        id: data.id,
+        username: data.username,
+        timeSet: data.timeSet,
+      });
     }
   });
   socket.on("make-move", (id, x, y, xx, yy, opponent) => {

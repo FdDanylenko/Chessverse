@@ -1,11 +1,12 @@
-import { FC, useContext } from "react";
+import { FC, useContext, useEffect, useRef, useState } from "react";
 import { Board } from "../models/Board";
 import { Cell } from "../models/Cell";
 import { GameDataContext } from "../contexts/gameContext";
 import LobbyComponent from "../../LobbyComponent";
 import LoaderComponent from "../../LoaderComponent";
 import HistoryComponent from "./HistoryComponent";
-
+import useAuth from "../../../hooks/useAuth";
+import { socket } from "../socket";
 interface BoardProps {
   board: Board;
   setBoard: (board: Board) => void;
@@ -13,10 +14,57 @@ interface BoardProps {
 }
 
 const SideMenu = () => {
-  const { gameStatus, board, setBoard, restart } = useContext(GameDataContext);
-  function resign() {
-    // setTimeSet(Math.random());
-  }
+  const {
+    gameStatus,
+    board,
+    setBoard,
+    restart,
+    chat,
+    setChat,
+    opponent,
+    setOpponent,
+    opponentUsername,
+  } = useContext(GameDataContext);
+  const { user } = useAuth();
+  const opponentUsernameRef = useRef(opponentUsername);
+  const [message, setMessage] = useState<string>("");
+  const sendMsg = (e: any) => {
+    e.preventDefault();
+    socket.emit("send-msg", opponent, message);
+    setChat((prev: any) => {
+      return [
+        ...prev,
+        {
+          id: prev.length,
+          author: user.username,
+          message: message,
+        },
+      ];
+    });
+    setMessage("");
+  };
+
+  useEffect(() => {
+    opponentUsernameRef.current = opponentUsername;
+  }, [opponentUsername]);
+
+  useEffect(() => {
+    socket.on("receive-msg", (message) => {
+      setChat((prev: any) => {
+        return [
+          ...prev,
+          {
+            id: prev.length,
+            author: opponentUsernameRef.current,
+            message: message,
+          },
+        ];
+      });
+    });
+    return () => {
+      socket.off("receive-msg");
+    };
+  }, []);
   return (
     <div className="side-menu">
       {gameStatus === "lobby" ? (
@@ -25,7 +73,33 @@ const SideMenu = () => {
         <LoaderComponent />
       ) : (
         <div className="side-menu-sections">
-          <div className="side-menu-section side-menu-chat"></div>
+          <div className="side-menu-section side-menu-chat">
+            <div className="messages-container">
+              {chat.map((msg: any) => (
+                <div
+                  key={msg.id}
+                  className={`message-container ${
+                    msg.author === user.username ? "own" : ""
+                  }`}
+                >
+                  <div className="msg-author-username">{msg.author}</div>
+                  <div className="msg-message-container">{msg.message}</div>
+                </div>
+              ))}
+            </div>
+            <form className="msg-input-container" onSubmit={sendMsg}>
+              <input
+                id="msg-input"
+                type="text"
+                value={message}
+                onChange={(e) => {
+                  setMessage(e.target.value);
+                }}
+                placeholder="Send a message"
+                autoComplete="none"
+              />
+            </form>
+          </div>
           <div className="side-menu-section side-menu-history">
             <HistoryComponent />
           </div>

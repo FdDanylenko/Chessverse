@@ -63,7 +63,7 @@ const HistoryComponent = () => {
     <div className="history-box">
       {moves.map((move: any, index: any) => (
         <div
-          className="history-box-item"
+          className={`history-box-item ${index % 2 === 1 ? "white" : ""}`}
           key={index}
           ref={index === moves.length - 1 ? lastElementRef : null}
         >

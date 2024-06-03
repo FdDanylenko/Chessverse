@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useRef, useState } from "react";
 
 interface User {
   id: string;
@@ -16,6 +16,8 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [username, setUsername] = useState<string>("");
   const [accessToken, setAccessToken] = useState<string>("");
+  const formPictureRef = useRef<any>(null);
+  const formDataRef = useRef<any>(null);
   const [persist, setPersist] = useState<any>(() => {
     const item = localStorage.getItem("persist");
     return item ? JSON.parse(item) : false;
@@ -31,6 +33,8 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         setAccessToken,
         persist,
         setPersist,
+        formPictureRef,
+        formDataRef,
       }}
     >
       {children}
