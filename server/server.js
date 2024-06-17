@@ -47,10 +47,6 @@ let playersId = [];
 io.on("connection", (socket) => {
   socket.on("send-msg", (opponent, message) => {
     socket.to(opponent).emit("receive-msg", message);
-    // if (opponent === "") {
-    //   socket.broadcast.emit("receive-msg", message);
-    // } else {
-    // }
   });
   socket.on("join-room", (room) => {
     socket.join(room);

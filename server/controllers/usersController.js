@@ -17,6 +17,22 @@ const uploadProfilePicture = async (req, res) => {
   await foundUser.save();
   res.status(200).json({ message: "User has been updated" });
 };
+const changeElo = async (req, res) => {
+  const { username, eloShift } = req.body;
+  if (!username) {
+    return res.status(400).json({ message: "Username is required" });
+  }
+  const foundUser = await User.findOne({ username }).exec();
+  if (!foundUser) {
+    return res.sendStatus(401);
+  }
+  foundUser.elo =
+    foundUser.elo <= Math.abs(eloShift) && eloShift < 0
+      ? 0
+      : foundUser.elo + eloShift;
+  await foundUser.save();
+  res.status(200).json({ message: "User has been updated" });
+};
 
 const getUserData = async (req, res) => {
   const username = req.body.username;
@@ -49,6 +65,7 @@ const handleNewUser = async (req, res) => {
       username,
       email,
       password: hashedPassword,
+      elo: 500,
       profilePicture: "http://localhost:5000/db/images/default.jpg",
     });
     res.status(201).json({ success: `New user ${username} created!` });
@@ -181,4 +198,5 @@ module.exports = {
   handleRefreshToken,
   handleUpdateProfile,
   uploadProfilePicture,
+  changeElo,
 };

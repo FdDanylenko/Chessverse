@@ -2,7 +2,6 @@ import AppLayout from "./components/AppLayout";
 import HomeComponent from "./components/HomeComponent";
 import LoginComponent from "./components/LoginComponent";
 import MissingComponent from "./components/MissingComponent";
-import PlayComponent from "./components/PlayComponent";
 import RegisterComponent from "./components/RegisterComponent";
 import "./css/App.css";
 import { Routes, Route, useNavigate } from "react-router-dom";

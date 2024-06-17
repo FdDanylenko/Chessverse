@@ -1,0 +1,116 @@
+"filename", "language", "JavaScript", "JSON", "JSON with Comments", "TypeScript", "TypeScript JSX", "CSS", "SVG", "JavaScript JSX", "HTML", "comment", "blank", "total"
+"d:\WEB Projects\chessverse\client\package-lock.json", "JSON", 0, -16638, 0, 0, 0, 0, 0, 0, 0, 0, -1, -16639
+"d:\WEB Projects\chessverse\client\package.json", "JSON", 0, -57, 0, 0, 0, 0, 0, 0, 0, 0, -1, -58
+"d:\WEB Projects\chessverse\client\public\index.html", "HTML", 0, 0, 0, 0, 0, 0, 0, 0, -14, 0, -1, -15
+"d:\WEB Projects\chessverse\client\src\App.test.tsx", "TypeScript JSX", 0, 0, 0, 0, -7, 0, 0, 0, 0, 0, -2, -9
+"d:\WEB Projects\chessverse\client\src\App.tsx", "TypeScript JSX", 0, 0, 0, 0, -37, 0, 0, 0, 0, 0, -5, -42
+"d:\WEB Projects\chessverse\client\src\api\server.js", "JavaScript", -11, 0, 0, 0, 0, 0, 0, 0, 0, 0, -4, -15
+"d:\WEB Projects\chessverse\client\src\assets\home\computer.f36f0d84.svg", "SVG", 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1
+"d:\WEB Projects\chessverse\client\src\assets\home\handshake.8c90be47.svg", "SVG", 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1
+"d:\WEB Projects\chessverse\client\src\assets\home\playwhite.cea685ba.svg", "SVG", 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1
+"d:\WEB Projects\chessverse\client\src\assets\home\puzzles.8f98f891.svg", "SVG", 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1
+"d:\WEB Projects\chessverse\client\src\assets\home\review.b44ad9a4.svg", "SVG", 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1
+"d:\WEB Projects\chessverse\client\src\assets\socials\apple.d77d954d.svg", "SVG", 0, 0, 0, 0, 0, 0, -6, 0, 0, 0, 0, -6
+"d:\WEB Projects\chessverse\client\src\assets\socials\facebook-button.2cbe7756.svg", "SVG", 0, 0, 0, 0, 0, 0, -6, 0, 0, 0, 0, -6
+"d:\WEB Projects\chessverse\client\src\assets\socials\google.d19562c0.svg", "SVG", 0, 0, 0, 0, 0, 0, -9, 0, 0, 0, 0, -9
+"d:\WEB Projects\chessverse\client\src\components\AppLayout.tsx", "TypeScript JSX", 0, 0, 0, 0, -12, 0, 0, 0, 0, 0, -3, -15
+"d:\WEB Projects\chessverse\client\src\components\FooterComponent.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 0, 0, -39, 0, 0, -3, -42
+"d:\WEB Projects\chessverse\client\src\components\ForgotPasswordComponent.tsx", "TypeScript JSX", 0, 0, 0, 0, -58, 0, 0, 0, 0, -1, -4, -63
+"d:\WEB Projects\chessverse\client\src\components\HomeComponent.tsx", "TypeScript JSX", 0, 0, 0, 0, -246, 0, 0, 0, 0, -11, -8, -265
+"d:\WEB Projects\chessverse\client\src\components\LoaderComponent.tsx", "TypeScript JSX", 0, 0, 0, 0, -11, 0, 0, 0, 0, 0, -3, -14
+"d:\WEB Projects\chessverse\client\src\components\LobbyComponent.tsx", "TypeScript JSX", 0, 0, 0, 0, -233, 0, 0, 0, 0, 0, -3, -236
+"d:\WEB Projects\chessverse\client\src\components\LoginComponent.tsx", "TypeScript JSX", 0, 0, 0, 0, -160, 0, 0, 0, 0, -14, -8, -182
+"d:\WEB Projects\chessverse\client\src\components\MissingComponent.tsx", "TypeScript JSX", 0, 0, 0, 0, -17, 0, 0, 0, 0, 0, -3, -20
+"d:\WEB Projects\chessverse\client\src\components\PersistLogin.tsx", "TypeScript JSX", 0, 0, 0, 0, -30, 0, 0, 0, 0, 0, -6, -36
+"d:\WEB Projects\chessverse\client\src\components\PlayComponent.tsx", "TypeScript JSX", 0, 0, 0, 0, -5, 0, 0, 0, 0, 0, -3, -8
+"d:\WEB Projects\chessverse\client\src\components\PuzzlesContainerComponent.tsx", "TypeScript JSX", 0, 0, 0, 0, -132, 0, 0, 0, 0, -1, -5, -138
+"d:\WEB Projects\chessverse\client\src\components\RegisterComponent.tsx", "TypeScript JSX", 0, 0, 0, 0, -125, 0, 0, 0, 0, 0, -7, -132
+"d:\WEB Projects\chessverse\client\src\components\RequireAuth.tsx", "TypeScript JSX", 0, 0, 0, 0, -34, 0, 0, 0, 0, 0, -5, -39
+"d:\WEB Projects\chessverse\client\src\components\SettingsComponent.tsx", "TypeScript JSX", 0, 0, 0, 0, -5, 0, 0, 0, 0, 0, -3, -8
+"d:\WEB Projects\chessverse\client\src\components\SidebarComponent.tsx", "TypeScript JSX", 0, 0, 0, 0, -208, 0, 0, 0, 0, -10, -6, -224
+"d:\WEB Projects\chessverse\client\src\components\UploadProfilePicture.tsx", "TypeScript JSX", 0, 0, 0, 0, -84, 0, 0, 0, 0, 0, -9, -93
+"d:\WEB Projects\chessverse\client\src\components\UserProfileComponent.tsx", "TypeScript JSX", 0, 0, 0, 0, -424, 0, 0, 0, 0, -14, -4, -442
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\GameBoardComponent.tsx", "TypeScript JSX", 0, 0, 0, 0, -100, 0, 0, 0, 0, -5, -7, -112
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\components\BlackPlayerInfoComponent.tsx", "TypeScript JSX", 0, 0, 0, 0, -61, 0, 0, 0, 0, -15, -5, -81
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\components\BlackPlayerTimer.tsx", "TypeScript JSX", 0, 0, 0, 0, -59, 0, 0, 0, 0, 0, -10, -69
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\components\BoardComponent.tsx", "TypeScript JSX", 0, 0, 0, 0, -402, 0, 0, 0, 0, -34, -22, -458
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\components\BoardComponentPreview.tsx", "TypeScript JSX", 0, 0, 0, 0, -41, 0, 0, 0, 0, -25, -4, -70
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\components\BoardTestingInfo.tsx", "TypeScript JSX", 0, 0, 0, 0, -95, 0, 0, 0, 0, -2, -8, -105
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\components\CellComponent.tsx", "TypeScript JSX", 0, 0, 0, 0, -47, 0, 0, 0, 0, -1, -4, -52
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\components\GameResult.tsx", "TypeScript JSX", 0, 0, 0, 0, -77, 0, 0, 0, 0, -1, -6, -84
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\components\HistoryComponent.tsx", "TypeScript JSX", 0, 0, 0, 0, -76, 0, 0, 0, 0, -7, -9, -92
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\components\LostPieces.tsx", "TypeScript JSX", 0, 0, 0, 0, -48, 0, 0, 0, 0, 0, -4, -52
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\components\PawnPromotionComponent.tsx", "TypeScript JSX", 0, 0, 0, 0, -60, 0, 0, 0, 0, 0, -5, -65
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\components\SideMenu.tsx", "TypeScript JSX", 0, 0, 0, 0, -163, 0, 0, 0, 0, -12, -7, -182
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\components\WhitePlayerInfoComponent.tsx", "TypeScript JSX", 0, 0, 0, 0, -60, 0, 0, 0, 0, -15, -5, -80
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\components\WhitePlayerTimer.tsx", "TypeScript JSX", 0, 0, 0, 0, -63, 0, 0, 0, 0, 0, -10, -73
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\contexts\gameContext.tsx", "TypeScript JSX", 0, 0, 0, 0, -146, 0, 0, 0, 0, 0, -8, -154
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\css\boardTestInfo.css", "CSS", 0, 0, 0, 0, 0, -72, 0, 0, 0, 0, -1, -73
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\css\coords.css", "CSS", 0, 0, 0, 0, 0, -164, 0, 0, 0, 0, -3, -167
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\css\gameResult.css", "CSS", 0, 0, 0, 0, 0, -99, 0, 0, 0, 0, -3, -102
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\css\historySections.css", "CSS", 0, 0, 0, 0, 0, -38, 0, 0, 0, -1, -1, -40
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\css\index.css", "CSS", 0, 0, 0, 0, 0, -140, 0, 0, 0, 0, -6, -146
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\css\infoSections.css", "CSS", 0, 0, 0, 0, 0, -55, 0, 0, 0, 0, -1, -56
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\css\lostPieces.css", "CSS", 0, 0, 0, 0, 0, -25, 0, 0, 0, 0, -1, -26
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\css\promotion.css", "CSS", 0, 0, 0, 0, 0, -52, 0, 0, 0, 0, -2, -54
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\css\sideMenu.css", "CSS", 0, 0, 0, 0, 0, -107, 0, 0, 0, -2, -13, -122
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\index.d.ts", "TypeScript", 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, -1, -2
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\index.tsx", "TypeScript JSX", 0, 0, 0, 0, -12, 0, 0, 0, 0, 0, -2, -14
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\models\Board.ts", "TypeScript", 0, 0, 0, -184, 0, 0, 0, 0, 0, -2, -11, -197
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\models\Cell.ts", "TypeScript", 0, 0, 0, -325, 0, 0, 0, 0, 0, -4, -4, -333
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\models\Colors.ts", "TypeScript", 0, 0, 0, -5, 0, 0, 0, 0, 0, 0, -1, -6
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\models\GameModes.ts", "TypeScript", 0, 0, 0, -8, 0, 0, 0, 0, 0, 0, -1, -9
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\models\Player.ts", "TypeScript", 0, 0, 0, -11, 0, 0, 0, 0, 0, 0, -3, -14
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\models\Utils\PiecesUtils.ts", "TypeScript", 0, 0, 0, -14, 0, 0, 0, 0, 0, 0, -2, -16
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\models\bot.ts", "TypeScript", 0, 0, 0, -161, 0, 0, 0, 0, 0, -43, -15, -219
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\models\pieces\Bishop.ts", "TypeScript", 0, 0, 0, -42, 0, 0, 0, 0, 0, 0, -3, -45
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\models\pieces\King.ts", "TypeScript", 0, 0, 0, -248, 0, 0, 0, 0, 0, -13, -6, -267
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\models\pieces\Knight.ts", "TypeScript", 0, 0, 0, -39, 0, 0, 0, 0, 0, 0, -1, -40
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\models\pieces\Pawn.ts", "TypeScript", 0, 0, 0, -121, 0, 0, 0, 0, 0, 0, -5, -126
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\models\pieces\Piece.ts", "TypeScript", 0, 0, 0, -339, 0, 0, 0, 0, 0, -2, -7, -348
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\models\pieces\PiecesNames.ts", "TypeScript", 0, 0, 0, -9, 0, 0, 0, 0, 0, 0, -1, -10
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\models\pieces\Queen.ts", "TypeScript", 0, 0, 0, -60, 0, 0, 0, 0, 0, 0, -2, -62
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\models\pieces\Rook.ts", "TypeScript", 0, 0, 0, -50, 0, 0, 0, 0, 0, 0, -2, -52
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\react-app-env.d.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -2
+"d:\WEB Projects\chessverse\client\src\components\gameComponent\socket.js", "JavaScript", -2, 0, 0, 0, 0, 0, 0, 0, 0, -1, -2, -5
+"d:\WEB Projects\chessverse\client\src\contexts\AuthContext.tsx", "TypeScript JSX", 0, 0, 0, 0, -40, 0, 0, 0, 0, 0, -6, -46
+"d:\WEB Projects\chessverse\client\src\contexts\FormContext.tsx", "TypeScript JSX", 0, 0, 0, 0, -32, 0, 0, 0, 0, 0, -9, -41
+"d:\WEB Projects\chessverse\client\src\contexts\SettingsContext.tsx", "TypeScript JSX", 0, 0, 0, 0, -22, 0, 0, 0, 0, 0, -5, -27
+"d:\WEB Projects\chessverse\client\src\css\App.css", "CSS", 0, 0, 0, 0, 0, -198, 0, 0, 0, 0, -9, -207
+"d:\WEB Projects\chessverse\client\src\css\HomeComponent.css", "CSS", 0, 0, 0, 0, 0, -299, 0, 0, 0, 0, -24, -323
+"d:\WEB Projects\chessverse\client\src\css\Loader.css", "CSS", 0, 0, 0, 0, 0, -35, 0, 0, 0, 0, -1, -36
+"d:\WEB Projects\chessverse\client\src\css\LoginComponent.css", "CSS", 0, 0, 0, 0, 0, -139, 0, 0, 0, -1, -17, -157
+"d:\WEB Projects\chessverse\client\src\css\MissingComponent.css", "CSS", 0, 0, 0, 0, 0, -40, 0, 0, 0, 0, -5, -45
+"d:\WEB Projects\chessverse\client\src\css\ProfileComponent.css", "CSS", 0, 0, 0, 0, 0, -136, 0, 0, 0, 0, -10, -146
+"d:\WEB Projects\chessverse\client\src\css\SidebarComponent.css", "CSS", 0, 0, 0, 0, 0, -132, 0, 0, 0, -1, -12, -145
+"d:\WEB Projects\chessverse\client\src\css\index.css", "CSS", 0, 0, 0, 0, 0, -28, 0, 0, 0, 0, -5, -33
+"d:\WEB Projects\chessverse\client\src\hooks\useAuth.ts", "TypeScript", 0, 0, 0, -6, 0, 0, 0, 0, 0, 0, -3, -9
+"d:\WEB Projects\chessverse\client\src\hooks\useRefreshToken.ts", "TypeScript", 0, 0, 0, -20, 0, 0, 0, 0, 0, 0, -3, -23
+"d:\WEB Projects\chessverse\client\src\hooks\useServerPrivate.ts", "TypeScript", 0, 0, 0, -38, 0, 0, 0, 0, 0, 0, -3, -41
+"d:\WEB Projects\chessverse\client\src\hooks\useSettings.ts", "TypeScript", 0, 0, 0, -6, 0, 0, 0, 0, 0, 0, -3, -9
+"d:\WEB Projects\chessverse\client\src\index.tsx", "TypeScript JSX", 0, 0, 0, 0, -34, 0, 0, 0, 0, -22, -5, -61
+"d:\WEB Projects\chessverse\client\src\models\localizations\english.ts", "TypeScript", 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, -1, -2
+"d:\WEB Projects\chessverse\client\src\models\localizations\french.ts", "TypeScript", 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, -1, -2
+"d:\WEB Projects\chessverse\client\src\models\localizations\german.ts", "TypeScript", 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, -1, -2
+"d:\WEB Projects\chessverse\client\src\models\localizations\russian.ts", "TypeScript", 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, -1, -2
+"d:\WEB Projects\chessverse\client\src\models\localizations\spanish.ts", "TypeScript", 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, -1, -2
+"d:\WEB Projects\chessverse\client\src\models\localizations\ukrainian.ts", "TypeScript", 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, -1, -2
+"d:\WEB Projects\chessverse\client\src\models\puzzles.ts", "TypeScript", 0, 0, 0, -164, 0, 0, 0, 0, 0, 0, -3, -167
+"d:\WEB Projects\chessverse\client\src\models\settings.ts", "TypeScript", 0, 0, 0, -16, 0, 0, 0, 0, 0, 0, -3, -19
+"d:\WEB Projects\chessverse\client\src\react-app-env.d.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -2
+"d:\WEB Projects\chessverse\client\src\reportWebVitals.ts", "TypeScript", 0, 0, 0, -13, 0, 0, 0, 0, 0, 0, -3, -16
+"d:\WEB Projects\chessverse\client\src\setupTests.ts", "TypeScript", 0, 0, 0, -1, 0, 0, 0, 0, 0, -4, -1, -6
+"d:\WEB Projects\chessverse\client\tsconfig.json", "JSON with Comments", 0, 0, -26, 0, 0, 0, 0, 0, 0, 0, -1, -27
+"d:\WEB Projects\chessverse\server\config\whiteList.js", "JavaScript", 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 11
+"d:\WEB Projects\chessverse\server\controllers\usersController.js", "JavaScript", 192, 0, 0, 0, 0, 0, 0, 0, 0, 1, 10, 203
+"d:\WEB Projects\chessverse\server\middleware\mailer.js", "JavaScript", 29, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 35
+"d:\WEB Projects\chessverse\server\middleware\registerGameResult.js", "JavaScript", 24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 27
+"d:\WEB Projects\chessverse\server\middleware\verifyJWT.js", "JavaScript", 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 15
+"d:\WEB Projects\chessverse\server\model\User.js", "JavaScript", 27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 30
+"d:\WEB Projects\chessverse\server\model\user.json", "JSON", 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 1, 15
+"d:\WEB Projects\chessverse\server\package-lock.json", "JSON", 0, 2233, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2234
+"d:\WEB Projects\chessverse\server\package.json", "JSON", 0, 33, 0, 0, 0, 0, 0, 0, 0, 0, 1, 34
+"d:\WEB Projects\chessverse\server\routes\imagesdb.js", "JavaScript", 8, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 12
+"d:\WEB Projects\chessverse\server\routes\users.js", "JavaScript", 36, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5, 42
+"d:\WEB Projects\chessverse\server\server.js", "JavaScript", 110, 0, 0, 0, 0, 0, 0, 0, 0, 4, 9, 123
+"Total", "-", 434, -14415, -26, -1887, -3466, -1759, -26, -39, -14, -259, -403, -21860

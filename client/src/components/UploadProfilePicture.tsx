@@ -41,14 +41,12 @@ function UploadProfilePictureForm() {
     const formData = new FormData();
     formData.append("picture", renamedFile);
     formData.append("username", user.username);
-    console.log(formData);
     try {
       const res = await server.post("/users/uploadProfilePicture", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(res.data.message);
     } catch (err: any) {
       console.log(err.message);
     }

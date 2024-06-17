@@ -72,7 +72,7 @@ const SidebarComponent = () => {
             Play
           </span>
         </a>
-        <Link to={"puzzles"} className="navigation-option-container">
+        {/* <Link to={"puzzles"} className="navigation-option-container">
           <span className="navigation-option-icon puzzles"></span>
           <span
             className={`navigation-option-body ${
@@ -81,7 +81,7 @@ const SidebarComponent = () => {
           >
             Puzzles
           </span>
-        </Link>
+        </Link> */}
         <Link to={"learn"} className="navigation-option-container">
           <span className="navigation-option-icon learn"></span>
           <span

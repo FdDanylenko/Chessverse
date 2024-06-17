@@ -1,0 +1,179 @@
+Date : 2024-06-12 11:13:41
+Directory : d:\WEB Projects\chessverse\server
+Total : 114 files,  -21198 codes, -259 comments, -403 blanks, all -21860 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JavaScript         |         11 |        434 |          6 |         38 |        478 |
+| HTML               |          1 |        -14 |          0 |         -1 |        -15 |
+| JSON with Comments |          1 |        -26 |          0 |         -1 |        -27 |
+| SVG                |          8 |        -26 |          0 |          0 |        -26 |
+| JavaScript JSX     |          1 |        -39 |          0 |         -3 |        -42 |
+| CSS                |         17 |     -1,759 |         -5 |       -114 |     -1,878 |
+| TypeScript         |         32 |     -1,887 |        -70 |        -95 |     -2,052 |
+| TypeScript JSX     |         38 |     -3,466 |       -190 |       -228 |     -3,884 |
+| JSON               |          5 |    -14,415 |          0 |          1 |    -14,414 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                   | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                      |        114 |    -21,198 |       -259 |       -403 |    -21,860 |
+| . (Files)                                                                                              |          3 |      2,376 |          4 |         11 |      2,391 |
+| ..                                                                                                     |        102 |    -23,925 |       -266 |       -450 |    -24,641 |
+| ..\client                                                                                              |        102 |    -23,925 |       -266 |       -450 |    -24,641 |
+| ..\client (Files)                                                                                      |          3 |    -16,721 |          0 |         -3 |    -16,724 |
+| ..\client\public                                                                                       |          1 |        -14 |          0 |         -1 |        -15 |
+| ..\client\src                                                                                          |         98 |     -7,190 |       -266 |       -446 |     -7,902 |
+| ..\client\src (Files)                                                                                  |          6 |        -92 |        -27 |        -17 |       -136 |
+| ..\client\src\api                                                                                      |          1 |        -11 |          0 |         -4 |        -15 |
+| ..\client\src\assets                                                                                   |          8 |        -26 |          0 |          0 |        -26 |
+| ..\client\src\assets\home                                                                              |          5 |         -5 |          0 |          0 |         -5 |
+| ..\client\src\assets\socials                                                                           |          3 |        -21 |          0 |          0 |        -21 |
+| ..\client\src\components                                                                               |         60 |     -5,704 |       -237 |       -298 |     -6,239 |
+| ..\client\src\components (Files)                                                                       |         17 |     -1,823 |        -51 |        -83 |     -1,957 |
+| ..\client\src\components\gameComponent                                                                 |         43 |     -3,881 |       -186 |       -215 |     -4,282 |
+| ..\client\src\components\gameComponent (Files)                                                         |          5 |       -115 |         -7 |        -13 |       -135 |
+| ..\client\src\components\gameComponent\components                                                      |         13 |     -1,252 |       -112 |        -99 |     -1,463 |
+| ..\client\src\components\gameComponent\contexts                                                        |          1 |       -146 |          0 |         -8 |       -154 |
+| ..\client\src\components\gameComponent\css                                                             |          9 |       -752 |         -3 |        -31 |       -786 |
+| ..\client\src\components\gameComponent\models                                                          |         15 |     -1,616 |        -64 |        -64 |     -1,744 |
+| ..\client\src\components\gameComponent\models (Files)                                                  |          6 |       -694 |        -49 |        -35 |       -778 |
+| ..\client\src\components\gameComponent\models\Utils                                                    |          1 |        -14 |          0 |         -2 |        -16 |
+| ..\client\src\components\gameComponent\models\pieces                                                   |          8 |       -908 |        -15 |        -27 |       -950 |
+| ..\client\src\contexts                                                                                 |          3 |        -94 |          0 |        -20 |       -114 |
+| ..\client\src\css                                                                                      |          8 |     -1,007 |         -2 |        -83 |     -1,092 |
+| ..\client\src\hooks                                                                                    |          4 |        -70 |          0 |        -12 |        -82 |
+| ..\client\src\models                                                                                   |          8 |       -186 |          0 |        -12 |       -198 |
+| ..\client\src\models (Files)                                                                           |          2 |       -180 |          0 |         -6 |       -186 |
+| ..\client\src\models\localizations                                                                     |          6 |         -6 |          0 |         -6 |        -12 |
+| config                                                                                                 |          1 |          9 |          0 |          2 |         11 |
+| controllers                                                                                            |          1 |        192 |          1 |         10 |        203 |
+| middleware                                                                                             |          3 |         65 |          0 |         12 |         77 |
+| model                                                                                                  |          2 |         41 |          0 |          4 |         45 |
+| routes                                                                                                 |          2 |         44 |          2 |          8 |         54 |
++--------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                               | language           | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| d:\WEB Projects\chessverse\client\package-lock.json                                                    | JSON               |    -16,638 |          0 |         -1 |    -16,639 |
+| d:\WEB Projects\chessverse\client\package.json                                                         | JSON               |        -57 |          0 |         -1 |        -58 |
+| d:\WEB Projects\chessverse\client\public\index.html                                                    | HTML               |        -14 |          0 |         -1 |        -15 |
+| d:\WEB Projects\chessverse\client\src\App.test.tsx                                                     | TypeScript JSX     |         -7 |          0 |         -2 |         -9 |
+| d:\WEB Projects\chessverse\client\src\App.tsx                                                          | TypeScript JSX     |        -37 |          0 |         -5 |        -42 |
+| d:\WEB Projects\chessverse\client\src\api\server.js                                                    | JavaScript         |        -11 |          0 |         -4 |        -15 |
+| d:\WEB Projects\chessverse\client\src\assets\home\computer.f36f0d84.svg                                | SVG                |         -1 |          0 |          0 |         -1 |
+| d:\WEB Projects\chessverse\client\src\assets\home\handshake.8c90be47.svg                               | SVG                |         -1 |          0 |          0 |         -1 |
+| d:\WEB Projects\chessverse\client\src\assets\home\playwhite.cea685ba.svg                               | SVG                |         -1 |          0 |          0 |         -1 |
+| d:\WEB Projects\chessverse\client\src\assets\home\puzzles.8f98f891.svg                                 | SVG                |         -1 |          0 |          0 |         -1 |
+| d:\WEB Projects\chessverse\client\src\assets\home\review.b44ad9a4.svg                                  | SVG                |         -1 |          0 |          0 |         -1 |
+| d:\WEB Projects\chessverse\client\src\assets\socials\apple.d77d954d.svg                                | SVG                |         -6 |          0 |          0 |         -6 |
+| d:\WEB Projects\chessverse\client\src\assets\socials\facebook-button.2cbe7756.svg                      | SVG                |         -6 |          0 |          0 |         -6 |
+| d:\WEB Projects\chessverse\client\src\assets\socials\google.d19562c0.svg                               | SVG                |         -9 |          0 |          0 |         -9 |
+| d:\WEB Projects\chessverse\client\src\components\AppLayout.tsx                                         | TypeScript JSX     |        -12 |          0 |         -3 |        -15 |
+| d:\WEB Projects\chessverse\client\src\components\FooterComponent.jsx                                   | JavaScript JSX     |        -39 |          0 |         -3 |        -42 |
+| d:\WEB Projects\chessverse\client\src\components\ForgotPasswordComponent.tsx                           | TypeScript JSX     |        -58 |         -1 |         -4 |        -63 |
+| d:\WEB Projects\chessverse\client\src\components\HomeComponent.tsx                                     | TypeScript JSX     |       -246 |        -11 |         -8 |       -265 |
+| d:\WEB Projects\chessverse\client\src\components\LoaderComponent.tsx                                   | TypeScript JSX     |        -11 |          0 |         -3 |        -14 |
+| d:\WEB Projects\chessverse\client\src\components\LobbyComponent.tsx                                    | TypeScript JSX     |       -233 |          0 |         -3 |       -236 |
+| d:\WEB Projects\chessverse\client\src\components\LoginComponent.tsx                                    | TypeScript JSX     |       -160 |        -14 |         -8 |       -182 |
+| d:\WEB Projects\chessverse\client\src\components\MissingComponent.tsx                                  | TypeScript JSX     |        -17 |          0 |         -3 |        -20 |
+| d:\WEB Projects\chessverse\client\src\components\PersistLogin.tsx                                      | TypeScript JSX     |        -30 |          0 |         -6 |        -36 |
+| d:\WEB Projects\chessverse\client\src\components\PlayComponent.tsx                                     | TypeScript JSX     |         -5 |          0 |         -3 |         -8 |
+| d:\WEB Projects\chessverse\client\src\components\PuzzlesContainerComponent.tsx                         | TypeScript JSX     |       -132 |         -1 |         -5 |       -138 |
+| d:\WEB Projects\chessverse\client\src\components\RegisterComponent.tsx                                 | TypeScript JSX     |       -125 |          0 |         -7 |       -132 |
+| d:\WEB Projects\chessverse\client\src\components\RequireAuth.tsx                                       | TypeScript JSX     |        -34 |          0 |         -5 |        -39 |
+| d:\WEB Projects\chessverse\client\src\components\SettingsComponent.tsx                                 | TypeScript JSX     |         -5 |          0 |         -3 |         -8 |
+| d:\WEB Projects\chessverse\client\src\components\SidebarComponent.tsx                                  | TypeScript JSX     |       -208 |        -10 |         -6 |       -224 |
+| d:\WEB Projects\chessverse\client\src\components\UploadProfilePicture.tsx                              | TypeScript JSX     |        -84 |          0 |         -9 |        -93 |
+| d:\WEB Projects\chessverse\client\src\components\UserProfileComponent.tsx                              | TypeScript JSX     |       -424 |        -14 |         -4 |       -442 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\GameBoardComponent.tsx                  | TypeScript JSX     |       -100 |         -5 |         -7 |       -112 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\components\BlackPlayerInfoComponent.tsx | TypeScript JSX     |        -61 |        -15 |         -5 |        -81 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\components\BlackPlayerTimer.tsx         | TypeScript JSX     |        -59 |          0 |        -10 |        -69 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\components\BoardComponent.tsx           | TypeScript JSX     |       -402 |        -34 |        -22 |       -458 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\components\BoardComponentPreview.tsx    | TypeScript JSX     |        -41 |        -25 |         -4 |        -70 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\components\BoardTestingInfo.tsx         | TypeScript JSX     |        -95 |         -2 |         -8 |       -105 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\components\CellComponent.tsx            | TypeScript JSX     |        -47 |         -1 |         -4 |        -52 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\components\GameResult.tsx               | TypeScript JSX     |        -77 |         -1 |         -6 |        -84 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\components\HistoryComponent.tsx         | TypeScript JSX     |        -76 |         -7 |         -9 |        -92 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\components\LostPieces.tsx               | TypeScript JSX     |        -48 |          0 |         -4 |        -52 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\components\PawnPromotionComponent.tsx   | TypeScript JSX     |        -60 |          0 |         -5 |        -65 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\components\SideMenu.tsx                 | TypeScript JSX     |       -163 |        -12 |         -7 |       -182 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\components\WhitePlayerInfoComponent.tsx | TypeScript JSX     |        -60 |        -15 |         -5 |        -80 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\components\WhitePlayerTimer.tsx         | TypeScript JSX     |        -63 |          0 |        -10 |        -73 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\contexts\gameContext.tsx                | TypeScript JSX     |       -146 |          0 |         -8 |       -154 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\css\boardTestInfo.css                   | CSS                |        -72 |          0 |         -1 |        -73 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\css\coords.css                          | CSS                |       -164 |          0 |         -3 |       -167 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\css\gameResult.css                      | CSS                |        -99 |          0 |         -3 |       -102 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\css\historySections.css                 | CSS                |        -38 |         -1 |         -1 |        -40 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\css\index.css                           | CSS                |       -140 |          0 |         -6 |       -146 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\css\infoSections.css                    | CSS                |        -55 |          0 |         -1 |        -56 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\css\lostPieces.css                      | CSS                |        -25 |          0 |         -1 |        -26 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\css\promotion.css                       | CSS                |        -52 |          0 |         -2 |        -54 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\css\sideMenu.css                        | CSS                |       -107 |         -2 |        -13 |       -122 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\index.d.ts                              | TypeScript         |         -1 |          0 |         -1 |         -2 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\index.tsx                               | TypeScript JSX     |        -12 |          0 |         -2 |        -14 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\models\Board.ts                         | TypeScript         |       -184 |         -2 |        -11 |       -197 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\models\Cell.ts                          | TypeScript         |       -325 |         -4 |         -4 |       -333 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\models\Colors.ts                        | TypeScript         |         -5 |          0 |         -1 |         -6 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\models\GameModes.ts                     | TypeScript         |         -8 |          0 |         -1 |         -9 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\models\Player.ts                        | TypeScript         |        -11 |          0 |         -3 |        -14 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\models\Utils\PiecesUtils.ts             | TypeScript         |        -14 |          0 |         -2 |        -16 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\models\bot.ts                           | TypeScript         |       -161 |        -43 |        -15 |       -219 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\models\pieces\Bishop.ts                 | TypeScript         |        -42 |          0 |         -3 |        -45 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\models\pieces\King.ts                   | TypeScript         |       -248 |        -13 |         -6 |       -267 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\models\pieces\Knight.ts                 | TypeScript         |        -39 |          0 |         -1 |        -40 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\models\pieces\Pawn.ts                   | TypeScript         |       -121 |          0 |         -5 |       -126 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\models\pieces\Piece.ts                  | TypeScript         |       -339 |         -2 |         -7 |       -348 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\models\pieces\PiecesNames.ts            | TypeScript         |         -9 |          0 |         -1 |        -10 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\models\pieces\Queen.ts                  | TypeScript         |        -60 |          0 |         -2 |        -62 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\models\pieces\Rook.ts                   | TypeScript         |        -50 |          0 |         -2 |        -52 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\react-app-env.d.ts                      | TypeScript         |          0 |         -1 |         -1 |         -2 |
+| d:\WEB Projects\chessverse\client\src\components\gameComponent\socket.js                               | JavaScript         |         -2 |         -1 |         -2 |         -5 |
+| d:\WEB Projects\chessverse\client\src\contexts\AuthContext.tsx                                         | TypeScript JSX     |        -40 |          0 |         -6 |        -46 |
+| d:\WEB Projects\chessverse\client\src\contexts\FormContext.tsx                                         | TypeScript JSX     |        -32 |          0 |         -9 |        -41 |
+| d:\WEB Projects\chessverse\client\src\contexts\SettingsContext.tsx                                     | TypeScript JSX     |        -22 |          0 |         -5 |        -27 |
+| d:\WEB Projects\chessverse\client\src\css\App.css                                                      | CSS                |       -198 |          0 |         -9 |       -207 |
+| d:\WEB Projects\chessverse\client\src\css\HomeComponent.css                                            | CSS                |       -299 |          0 |        -24 |       -323 |
+| d:\WEB Projects\chessverse\client\src\css\Loader.css                                                   | CSS                |        -35 |          0 |         -1 |        -36 |
+| d:\WEB Projects\chessverse\client\src\css\LoginComponent.css                                           | CSS                |       -139 |         -1 |        -17 |       -157 |
+| d:\WEB Projects\chessverse\client\src\css\MissingComponent.css                                         | CSS                |        -40 |          0 |         -5 |        -45 |
+| d:\WEB Projects\chessverse\client\src\css\ProfileComponent.css                                         | CSS                |       -136 |          0 |        -10 |       -146 |
+| d:\WEB Projects\chessverse\client\src\css\SidebarComponent.css                                         | CSS                |       -132 |         -1 |        -12 |       -145 |
+| d:\WEB Projects\chessverse\client\src\css\index.css                                                    | CSS                |        -28 |          0 |         -5 |        -33 |
+| d:\WEB Projects\chessverse\client\src\hooks\useAuth.ts                                                 | TypeScript         |         -6 |          0 |         -3 |         -9 |
+| d:\WEB Projects\chessverse\client\src\hooks\useRefreshToken.ts                                         | TypeScript         |        -20 |          0 |         -3 |        -23 |
+| d:\WEB Projects\chessverse\client\src\hooks\useServerPrivate.ts                                        | TypeScript         |        -38 |          0 |         -3 |        -41 |
+| d:\WEB Projects\chessverse\client\src\hooks\useSettings.ts                                             | TypeScript         |         -6 |          0 |         -3 |         -9 |
+| d:\WEB Projects\chessverse\client\src\index.tsx                                                        | TypeScript JSX     |        -34 |        -22 |         -5 |        -61 |
+| d:\WEB Projects\chessverse\client\src\models\localizations\english.ts                                  | TypeScript         |         -1 |          0 |         -1 |         -2 |
+| d:\WEB Projects\chessverse\client\src\models\localizations\french.ts                                   | TypeScript         |         -1 |          0 |         -1 |         -2 |
+| d:\WEB Projects\chessverse\client\src\models\localizations\german.ts                                   | TypeScript         |         -1 |          0 |         -1 |         -2 |
+| d:\WEB Projects\chessverse\client\src\models\localizations\russian.ts                                  | TypeScript         |         -1 |          0 |         -1 |         -2 |
+| d:\WEB Projects\chessverse\client\src\models\localizations\spanish.ts                                  | TypeScript         |         -1 |          0 |         -1 |         -2 |
+| d:\WEB Projects\chessverse\client\src\models\localizations\ukrainian.ts                                | TypeScript         |         -1 |          0 |         -1 |         -2 |
+| d:\WEB Projects\chessverse\client\src\models\puzzles.ts                                                | TypeScript         |       -164 |          0 |         -3 |       -167 |
+| d:\WEB Projects\chessverse\client\src\models\settings.ts                                               | TypeScript         |        -16 |          0 |         -3 |        -19 |
+| d:\WEB Projects\chessverse\client\src\react-app-env.d.ts                                               | TypeScript         |          0 |         -1 |         -1 |         -2 |
+| d:\WEB Projects\chessverse\client\src\reportWebVitals.ts                                               | TypeScript         |        -13 |          0 |         -3 |        -16 |
+| d:\WEB Projects\chessverse\client\src\setupTests.ts                                                    | TypeScript         |         -1 |         -4 |         -1 |         -6 |
+| d:\WEB Projects\chessverse\client\tsconfig.json                                                        | JSON with Comments |        -26 |          0 |         -1 |        -27 |
+| d:\WEB Projects\chessverse\server\config\whiteList.js                                                  | JavaScript         |          9 |          0 |          2 |         11 |
+| d:\WEB Projects\chessverse\server\controllers\usersController.js                                       | JavaScript         |        192 |          1 |         10 |        203 |
+| d:\WEB Projects\chessverse\server\middleware\mailer.js                                                 | JavaScript         |         29 |          0 |          6 |         35 |
+| d:\WEB Projects\chessverse\server\middleware\registerGameResult.js                                     | JavaScript         |         24 |          0 |          3 |         27 |
+| d:\WEB Projects\chessverse\server\middleware\verifyJWT.js                                              | JavaScript         |         12 |          0 |          3 |         15 |
+| d:\WEB Projects\chessverse\server\model\User.js                                                        | JavaScript         |         27 |          0 |          3 |         30 |
+| d:\WEB Projects\chessverse\server\model\user.json                                                      | JSON               |         14 |          0 |          1 |         15 |
+| d:\WEB Projects\chessverse\server\package-lock.json                                                    | JSON               |      2,233 |          0 |          1 |      2,234 |
+| d:\WEB Projects\chessverse\server\package.json                                                         | JSON               |         33 |          0 |          1 |         34 |
+| d:\WEB Projects\chessverse\server\routes\imagesdb.js                                                   | JavaScript         |          8 |          1 |          3 |         12 |
+| d:\WEB Projects\chessverse\server\routes\users.js                                                      | JavaScript         |         36 |          1 |          5 |         42 |
+| d:\WEB Projects\chessverse\server\server.js                                                            | JavaScript         |        110 |          4 |          9 |        123 |
+| Total                                                                                                  |                    |    -21,198 |       -259 |       -403 |    -21,860 |
++--------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

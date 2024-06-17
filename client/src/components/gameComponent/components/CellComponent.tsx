@@ -17,6 +17,7 @@ const CellComponent: FC<CellProps> = ({ cell, selected, click }) => {
     <div
       className={[
         "cell",
+        // cell.hinted ? "hinted" : "",
         playerColor === Colors.BLACK ? "rotated" : "",
         cell.color,
         selected ? "selected" : "",
@@ -27,6 +28,7 @@ const CellComponent: FC<CellProps> = ({ cell, selected, click }) => {
           (!cell.piece ||
             playerColor === cell.piece?.color ||
             gameMode === GameModes.SANDBOX ||
+            gameMode === GameModes.PUZZLE ||
             cell.available)
         ) {
           click(cell);
@@ -34,6 +36,7 @@ const CellComponent: FC<CellProps> = ({ cell, selected, click }) => {
       }}
     >
       {cell.available && !cell.piece && <div className="available"></div>}
+      {cell.hinted && <div className="hinted"></div>}
       {cell.available && cell.piece && <div className="availableToTake"></div>}
       {cell.availableToPasant && <div className="enPassant"></div>}
       {(cell.piece as King)?.isCheckMate && (

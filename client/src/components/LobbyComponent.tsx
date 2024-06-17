@@ -7,15 +7,29 @@ import promoItemIconHandshake from "../assets/home/handshake.8c90be47.svg";
 import promoItemIconPlay from "../assets/home/playwhite.cea685ba.svg";
 import promoItemIconPuzzles from "../assets/home/puzzles.8f98f891.svg";
 import promoItemIconSandbox from "../assets/home/review.b44ad9a4.svg";
+import { Colors } from "./gameComponent/models/Colors";
+import { puzzlesNames } from "../models/puzzles";
+import PuzzlesContainerComponent from "./PuzzlesContainerComponent";
 
 const LobbyComponent = () => {
-  const { gameMode, setGameMode, setGameStatus, timeSet, setTimeSet } =
-    useContext(GameDataContext);
+  const {
+    gameMode,
+    setGameMode,
+    setGameStatus,
+    timeSet,
+    setTimeSet,
+    playerColor,
+    setPlayerColor,
+    setUpPuzzle,
+  } = useContext(GameDataContext);
   const navigate = useNavigate();
   const navigateToLobby = (gm: GameModes) => {
     setGameMode(gm);
     setGameStatus("lobby");
     navigate("/play");
+    if (gm === GameModes.PUZZLE) {
+      setGameStatus("started");
+    }
   };
   return gameMode === GameModes.PRESELECTED ? (
     <div className="side-menu-container">
@@ -65,7 +79,14 @@ const LobbyComponent = () => {
             className="play-quick-link-icon"
             src={promoItemIconPuzzles}
           ></img>
-          <div className="play-quick-link-body">Solve Puzzle</div>
+          <div
+            className="play-quick-link-body"
+            onClick={() => {
+              navigateToLobby(GameModes.PUZZLE);
+            }}
+          >
+            Solve Puzzle
+          </div>
         </div>
       </div>
     </div>
@@ -164,8 +185,43 @@ const LobbyComponent = () => {
         Play
       </div>
     </div>
+  ) : gameMode === GameModes.PUZZLE ? (
+    <PuzzlesContainerComponent />
   ) : (
     <div className="side-menu-container">
+      <div className="lobby-game-player-color">
+        <div className="lobby-player-colors-label">I PLAY AS</div>
+        <div className="lobby-player-colors-container">
+          <div
+            className={`lobby-player-color ${
+              playerColor === Colors.WHITE ? "selected" : ""
+            } white`}
+            onClick={() => {
+              setPlayerColor(Colors.WHITE);
+            }}
+          ></div>
+          <div
+            className={`lobby-player-color ${
+              playerColor === Colors.SELECTED ? "selected" : ""
+            } random`}
+            onClick={() => {
+              setPlayerColor(
+                Math.floor(Math.random() * 2) === 0
+                  ? Colors.WHITE
+                  : Colors.BLACK
+              );
+            }}
+          ></div>
+          <div
+            className={`lobby-player-color ${
+              playerColor === Colors.BLACK ? "selected" : ""
+            } black`}
+            onClick={() => {
+              setPlayerColor(Colors.BLACK);
+            }}
+          ></div>
+        </div>
+      </div>
       <div
         className="lobby-button-play button-green"
         onClick={() => setGameStatus("started")}

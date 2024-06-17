@@ -10,23 +10,18 @@ export function bot(
   board: Board,
   currentPlayer: Player
 ): { cell: Cell; cellToMove: Cell } | null {
-  console.log("Trying to retreat");
   let retreat = findMove(4, board, currentPlayer);
   if (retreat) return retreat;
 
-  console.log("Trying to make a good move");
   let goodMove = findMove(1, board, currentPlayer);
   if (goodMove) return goodMove;
 
-  console.log("Trying to protect hanging piece");
   let hangingPiece = findMove(1, board, currentPlayer);
   if (hangingPiece) return hangingPiece;
 
-  console.log("Trying to make a normal move");
   let normalMove = findMove(2, board, currentPlayer);
   if (normalMove) return normalMove;
 
-  console.log("Trying to make a move");
   let anyMove = findMove(3, board, currentPlayer);
   if (anyMove) return anyMove;
   return null;

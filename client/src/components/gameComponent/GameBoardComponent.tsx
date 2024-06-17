@@ -12,6 +12,8 @@ import BoardTestingInfo from "./components/BoardTestingInfo";
 import SideMenu from "./components/SideMenu";
 import { GameDataContext, GameDataProvider } from "./contexts/gameContext";
 import "./css/index.css";
+import { GameModes } from "./models/GameModes";
+import { puzzlesNames } from "../../models/puzzles";
 
 function App() {
   const {
@@ -34,13 +36,33 @@ function App() {
     closePromotionDialog,
     showGameResultDialog,
     closeGameResultDialog,
+    gameMode,
+    setUpPuzzle,
+    setPuzzleStage,
   } = useContext(GameDataContext);
 
   useEffect(() => {
     restart();
+    if (gameMode === GameModes.PUZZLE) {
+      setUpPuzzle(puzzlesNames.OnTheBrinckOfZugzwang);
+    } else {
+      restart();
+    }
     setCurrentPlayer(whitePlayer);
+
     setTimeSet(timeSet);
   }, []);
+  useEffect(() => {
+    restart();
+    if (gameMode === GameModes.PUZZLE) {
+      setUpPuzzle(puzzlesNames.OnTheBrinckOfZugzwang);
+    } else {
+      restart();
+    }
+    setCurrentPlayer(whitePlayer);
+    setPuzzleStage(0);
+    setTimeSet(timeSet);
+  }, [gameMode]);
 
   // useEffect(() => {
   //   showPromotionDialog();
@@ -50,20 +72,32 @@ function App() {
     <div className="GameBoard">
       <div className="game-all-content">
         <>
-          <div className="game-field">
+          <div
+            className={`game-field ${
+              gameMode === GameModes.PUZZLE ? "puzzle-mode" : ""
+            }`}
+          >
             {/* <HistoryComponent moves={board.blackMoves} /> */}
-            {playerColor === Colors.WHITE ? (
-              <BotInfoComponent />
+            {gameMode !== GameModes.PUZZLE ? (
+              playerColor === Colors.WHITE ? (
+                <BotInfoComponent />
+              ) : (
+                <PlayerInfoComponent />
+              )
             ) : (
-              <PlayerInfoComponent />
+              <></>
             )}
             <PawnPromotionComponent />
             <GameResult />
             <BoardComponent />
-            {playerColor === Colors.WHITE ? (
-              <PlayerInfoComponent />
+            {gameMode !== GameModes.PUZZLE ? (
+              playerColor === Colors.WHITE ? (
+                <PlayerInfoComponent />
+              ) : (
+                <BotInfoComponent />
+              )
             ) : (
-              <BotInfoComponent />
+              <></>
             )}
             {/* <HistoryComponent moves={board.whiteMoves} /> */}
           </div>

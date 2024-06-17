@@ -4,6 +4,7 @@ import { PiecesNames } from "./pieces/PiecesNames";
 import { Board } from "./Board";
 import { King } from "./pieces/King";
 import { Pawn } from "./pieces/Pawn";
+import _ from "lodash";
 export class Cell {
   readonly x: number;
   readonly y: number;
@@ -11,6 +12,7 @@ export class Cell {
   piece: Piece | null;
   board: Board;
   available: boolean;
+  hinted: boolean;
   availableToPasant: boolean = false;
   id: number;
 
@@ -27,6 +29,7 @@ export class Cell {
     this.piece = piece;
     this.board = board;
     this.available = false;
+    this.hinted = false;
     this.id = Math.random();
   }
   public equals(otherX: number, otherY: number): boolean {
@@ -290,7 +293,6 @@ export class Cell {
       ) {
         additionalInfo += "Q";
         target.piece?.recheckIfCheck(enemyKing as Cell);
-        // console.log(((enemyKing as Cell).piece as King).checkFromWho);
       }
       if (
         ((enemyKing as Cell).piece as King).isCheck ||
@@ -317,6 +319,10 @@ export class Cell {
         yy: target.y,
       };
       this.board.movesHistory.push(move);
+      this.board.boardHistory.push({ cells: this.board.cells });
+      // this.board.boardHistory.forEach((block) => {
+      //   console.log(_.isEqual(block, this.board.cells));
+      // });
       // console.log(this.board.movesHistory);
       this.piece = null;
       return 1;

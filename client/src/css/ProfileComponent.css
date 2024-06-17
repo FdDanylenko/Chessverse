@@ -2,6 +2,7 @@
   margin-bottom: 30px;
   padding: 32px;
   background-color: #262522;
+  width: 728px;
 }
 
 #upload-profile-image {
@@ -110,8 +111,35 @@
   font-weight: 100;
   line-height: 30px;
 }
-
+select.profile-form-input {
+  width: 282px !important;
+}
 .profile-form-input:focus {
   outline: none;
   border: 1px solid #777675;
+}
+
+textarea.profile-form-input {
+  display: block;
+  width: 96%;
+  min-height: 240px;
+  resize: vertical;
+}
+
+#form-submit {
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(129, 182, 76, 255);
+  color: #e9edcc;
+  font-weight: 900;
+}
+
+#form-submit:hover {
+  background-color: rgba(129, 182, 76, 255);
+  opacity: 0.9;
 }

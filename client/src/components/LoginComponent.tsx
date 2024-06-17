@@ -46,7 +46,6 @@ const LoginComponent = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log("f");
     try {
       const response = await server.post(
         "/users/login",
@@ -56,7 +55,6 @@ const LoginComponent = () => {
           withCredentials: true,
         }
       );
-      console.log(response.data.user);
       setAccessToken(response.data.accessToken);
       setUser(response.data.user);
       // setUsername(response.data.username);

@@ -8,6 +8,7 @@ import { Piece } from "./pieces/Piece";
 import { PiecesNames } from "./pieces/PiecesNames";
 import { Queen } from "./pieces/Queen";
 import { Rook } from "./pieces/Rook";
+import _ from "lodash";
 
 interface move {
   x: number;
@@ -18,6 +19,7 @@ interface move {
 
 export class Board {
   cells: Cell[][] = [];
+  public boardHistory: any[] = [];
   whiteLostPieces: Piece[] = [];
   blackLostPieces: Piece[] = [];
   blackMoves: string[] = [];
@@ -44,6 +46,7 @@ export class Board {
       }
       this.cells.push(row);
     }
+    this.boardHistory.push({ cells: this.cells });
   }
 
   public setWinner(_winner: string, _reason: string) {
@@ -65,6 +68,21 @@ export class Board {
     newBoard.endGame = this.endGame;
     newBoard.winner = this.winner;
     newBoard.reason = this.reason;
+    newBoard.boardHistory = this.boardHistory;
+    return newBoard;
+  }
+  public getBoardFromHistory(index: any): Board {
+    const newBoard = new Board();
+    _.isEqual(newBoard.cells, this.boardHistory[0].cells);
+    newBoard.cells = this.boardHistory[0].cells;
+    newBoard.blackLostPieces = this.blackLostPieces;
+    newBoard.whiteLostPieces = this.whiteLostPieces;
+    newBoard.blackMoves = this.blackMoves;
+    newBoard.whiteMoves = this.whiteMoves;
+    newBoard.endGame = this.endGame;
+    newBoard.winner = this.winner;
+    newBoard.reason = this.reason;
+    newBoard.boardHistory = this.boardHistory;
     return newBoard;
   }
 
@@ -86,8 +104,40 @@ export class Board {
     const cells = board.cells.flat();
     return cells.find(
       (cell) =>
-        cell.piece?.color === color && cell.piece.name === PiecesNames.KING
+        cell.piece &&
+        cell.piece?.color === color &&
+        cell.piece.name === PiecesNames.KING
     );
+  }
+
+  public addPiece(
+    piece: string,
+    color: Colors.WHITE | Colors.BLACK,
+    x: number,
+    y: number
+  ) {
+    switch (piece) {
+      case "King":
+        new King(color, this.getCell(x, y));
+        break;
+      case "Queen":
+        new Queen(color, this.getCell(x, y));
+        break;
+      case "Bishop":
+        new Bishop(color, this.getCell(x, y));
+        break;
+      case "Knight":
+        new Knight(color, this.getCell(x, y));
+        break;
+      case "Rook":
+        new Rook(color, this.getCell(x, y));
+        break;
+      case "Pawn":
+        new Pawn(color, this.getCell(x, y));
+        break;
+      default:
+        break;
+    }
   }
 
   public addPieces() {

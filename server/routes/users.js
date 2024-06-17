@@ -10,6 +10,7 @@ const {
   handleRefreshToken,
   handleUpdateProfile,
   uploadProfilePicture,
+  changeElo,
 } = require("../controllers/usersController");
 const router = express.Router();
 
@@ -35,5 +36,6 @@ router.route("/login").post(handleAuth);
 router.route("/logout").post(handleLogout);
 router.route("/refresh").post(handleRefreshToken);
 router.route("/update").post(verifyJWT, handleUpdateProfile);
+router.route("/shiftElo").post(verifyJWT, changeElo);
 
 module.exports = router;

@@ -16,6 +16,8 @@ import { GameDataContext } from "./gameComponent/contexts/gameContext";
 import { GameModes } from "./gameComponent/models/GameModes";
 import { Colors } from "./gameComponent/models/Colors";
 import { url } from "inspector";
+import FooterComponent from "./FooterComponent";
+import { v4 as uuid } from "uuid";
 
 const HomeComponent = () => {
   const { user, setUser, accessToken, setAccessToken } = useAuth();
@@ -46,6 +48,10 @@ const HomeComponent = () => {
     navigate("/play");
   };
 
+  const generateKey = () => {
+    return `${new Date().getTime()}`;
+  };
+
   return (
     <div className="home-all-content">
       <div className="home-container">
@@ -57,6 +63,7 @@ const HomeComponent = () => {
             ></img>
             <div>
               <span className="home-username">{user?.username}</span>
+              <span className="home-username">{`[${user?.elo || 0}]`}</span>
               <span
                 className="country-flag"
                 style={{
@@ -122,7 +129,7 @@ const HomeComponent = () => {
                     className="play-quick-link-icon"
                     src={promoItemIconPlay}
                   ></img>
-                  <div className="play-quick-link-body">Play 15 | 10</div>
+                  <div className="play-quick-link-body">Play</div>
                 </div>
                 <div className="play-quick-link">
                   <img
@@ -143,7 +150,12 @@ const HomeComponent = () => {
                   ></img>
                   <div className="play-quick-link-body">Play Computer</div>
                 </div>
-                <div className="play-quick-link">
+                <div
+                  className="play-quick-link"
+                  onClick={() => {
+                    navigateToLobby(GameModes.PUZZLE);
+                  }}
+                >
                   <img
                     className="play-quick-link-icon"
                     src={promoItemIconPuzzles}
@@ -152,7 +164,12 @@ const HomeComponent = () => {
                 </div>
               </div>
             </div>
-            <div className="promo-column">
+            <div
+              className="promo-column"
+              onClick={() => {
+                navigateToLobby(GameModes.PUZZLE);
+              }}
+            >
               <div className="promo-item">
                 <div className="promo-item-icon">
                   <img src={promoItemIconPuzzles}></img>
@@ -214,9 +231,9 @@ const HomeComponent = () => {
               <div className="completed-games-label date">Date</div>
             </div>
             <div className="completed-games-list">
-              {user.gameResults.slice(-5).map((game: any, index: any) => (
+              {user.gameResults.slice(-5).map((game: any) => (
                 <>
-                  <div className="completed-games-item" key={index}>
+                  <div className="completed-games-item" key={generateKey()}>
                     <div className="completed-games-data players">
                       <div className="player-name">{game.playerUsername}</div>
                       <div className="player-name">{game.opponentUsername}</div>
@@ -238,39 +255,7 @@ const HomeComponent = () => {
             </div>
           </div>
         </main>
-        <footer className="footer">
-          <div className="footer-links">
-            <Link to={"Missing"}>Help</Link>
-            <span className="footer-links-divider">|</span>
-            <Link to={"Missing"}>Language</Link>
-            <span className="footer-links-divider">|</span>
-            <Link to={"Missing"}>About</Link>
-            <span className="footer-links-divider">|</span>
-            <Link to={"Missing"}>Jobs</Link>
-            <span className="footer-links-divider">|</span>
-            <Link to={"Missing"}>Dev</Link>
-            <span className="footer-links-divider">|</span>
-            <Link to={"Missing"}>User Agreement</Link>
-            <span className="footer-links-divider">|</span>
-            <Link to={"Missing"}>Privacy Policy</Link>
-            <span className="footer-links-divider">|</span>
-            <Link to={"Missing"}>Privacy Settings</Link>
-            <span className="footer-links-divider">|</span>
-            <Link to={"Missing"}>Partners</Link>
-            <span className="footer-links-divider">|</span>
-            <Link to={"Missing"}>Compliance</Link>
-            <span className="footer-links-divider">|</span>
-            <Link to={"Missing"}>Chessverse ©2024</Link>
-          </div>
-          <div className="footer-links-socials">
-            <span className="footer-link-social tiktok"></span>
-            <span className="footer-link-social twitter"></span>
-            <span className="footer-link-social youtube"></span>
-            <span className="footer-link-social twitch"></span>
-            <span className="footer-link-social instagram"></span>
-            <span className="footer-link-social discord"></span>
-          </div>
-        </footer>
+        <FooterComponent />
       </div>
     </div>
   );

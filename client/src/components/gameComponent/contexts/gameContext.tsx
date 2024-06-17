@@ -4,6 +4,9 @@ import { Player } from "../models/Player";
 import { Colors } from "../models/Colors";
 import { PiecesNames } from "../models/pieces/PiecesNames";
 import { GameModes } from "../models/GameModes";
+import Puzzles, { Puzzle, puzzlesNames } from "../../../models/puzzles";
+import _ from "lodash";
+import { Cell } from "../models/Cell";
 
 export const GameDataContext = createContext<any>({});
 
@@ -17,7 +20,7 @@ export const GameDataProvider: FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [gameStatus, setGameStatus] = useState<
-    "lobby" | "awaiting" | "started" | "ended"
+    "lobby" | "awaiting" | "started" | "ended" | "failedMove"
   >("lobby");
   const [chat, setChat] = useState<chatMessage[]>([]);
   const [board, setBoard] = useState(new Board());
@@ -30,6 +33,7 @@ export const GameDataProvider: FC<{ children: React.ReactNode }> = ({
   const [opponentUsername, setOpponentUsername] = useState<String>("Opponent");
   const [gameMode, setGameMode] = useState<GameModes>(GameModes.PRESELECTED);
   const [promotionPiece, setPromotionPiece] = useState<PiecesNames>();
+  const [puzzleStage, setPuzzleStage] = useState<Number>(0);
   const [isPromotionDialogOpen, setIsPromotionDialogOpen] = useState<
     true | false
   >(false);
@@ -37,6 +41,10 @@ export const GameDataProvider: FC<{ children: React.ReactNode }> = ({
     true | false
   >(false);
   const [opponent, setOpponent] = useState("");
+  const [currentPuzzle, setCurrentPuzzle] = useState(
+    puzzlesNames.OnTheBrinckOfZugzwang
+  );
+  const [prevInteractedCell, setPrevInteractedCell] = useState<Cell[]>([]);
 
   function restart() {
     const newBoard = new Board();
@@ -47,7 +55,29 @@ export const GameDataProvider: FC<{ children: React.ReactNode }> = ({
     setTimeSet(0);
     setTimeSet(tempTimeSet);
     setMovesCount(0);
-    setGameStatus("lobby");
+    setPrevInteractedCell([]);
+    if (gameMode === GameModes.PUZZLE) {
+      setGameStatus("started");
+    } else {
+      setGameStatus("lobby");
+    }
+  }
+
+  function setUpPuzzle(puzzleName: String) {
+    const newBoard = new Board();
+    newBoard.initCells();
+    const puzzle = _.find(Puzzles, { name: puzzleName });
+    puzzle?.pieces.forEach((piece) => {
+      newBoard.addPiece(piece.name, piece.color, piece.x, piece.y);
+    });
+    setBoard(newBoard);
+    setTimeSet(0);
+    setMovesCount(0);
+    setPlayerColor(puzzle?.colorToMove || Colors.WHITE);
+    setCurrentPlayer(
+      puzzle?.colorToMove === Colors.WHITE ? whitePlayer : blackPlayer
+    );
+    setGameStatus("started");
   }
 
   function swapPlayer() {
@@ -108,6 +138,13 @@ export const GameDataProvider: FC<{ children: React.ReactNode }> = ({
         closeGameResultDialog,
         opponent,
         setOpponent,
+        setUpPuzzle,
+        puzzleStage,
+        setPuzzleStage,
+        currentPuzzle,
+        setCurrentPuzzle,
+        prevInteractedCell,
+        setPrevInteractedCell,
       }}
     >
       {children}

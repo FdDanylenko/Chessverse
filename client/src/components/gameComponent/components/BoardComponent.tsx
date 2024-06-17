@@ -15,6 +15,9 @@ import { GameDataContext } from "../contexts/gameContext";
 import { GameModes } from "../models/GameModes";
 import { format } from "date-fns";
 import useAuth from "../../../hooks/useAuth";
+import Puzzles, { puzzlesNames } from "../../../models/puzzles";
+import _ from "lodash";
+import server from "../../../api/server";
 
 const BoardComponent = () => {
   let moveSound = require("./../assets/move-self.mp3");
@@ -43,12 +46,26 @@ const BoardComponent = () => {
     opponent,
     setOpponent,
     setChat,
+    puzzleStage,
+    setPuzzleStage,
+    currentPuzzle,
+    setCurrentPuzzle,
+    prevInteractedCell,
+    setPrevInteractedCell,
   } = useContext(GameDataContext);
   const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
   // const [opponent, setOpponent] = useState("");
   const opponentRef = useRef(opponent);
   const gameStatusRef = useRef(gameStatus);
   const [socketId, setSocketId] = useState("");
+
+  const PuzzlesEnumValues = Object.values(puzzlesNames) as puzzlesNames[];
+  const [currentPuzzleIndex, setCurrentPuzzleIndex] = useState(
+    PuzzlesEnumValues.indexOf(currentPuzzle)
+  );
+  useEffect(() => {
+    setCurrentPuzzleIndex(PuzzlesEnumValues.indexOf(currentPuzzle));
+  }, [currentPuzzle]);
 
   useEffect(() => {
     opponentRef.current = opponent;
@@ -147,6 +164,15 @@ const BoardComponent = () => {
         board.whiteMoves.length + board.blackMoves.length,
         format(new Date(), "yyyy-MM-dd")
       );
+      let eloShift = result === "won" ? 10 : result === "lost" ? -10 : 0;
+      server.post(
+        "/users/shiftElo",
+        { username: user.username, eloShift: eloShift },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
     }
   };
 
@@ -186,14 +212,24 @@ const BoardComponent = () => {
     }
   }
 
+  // gameMode === GameModes.PUZZLE &&
+  //     selectedCell.x === getPuzzleMove("player")?.cell.x &&
+  //     selectedCell.y === getPuzzleMove("player")?.cell.y &&
+  //     cell.x === getPuzzleMove("player")?.cellToMove.x &&
+  //     cell.y === getPuzzleMove("player")?.cellToMove.y
+
   function click(cell: Cell) {
     if (selectedCell !== null && selectedCell.piece?.canMove(cell)) {
+      for (let row = 0; row < 8; row++) {
+        for (let col = 0; col < 8; col++) {
+          board.getCell(row, col).hinted = false;
+        }
+      }
       cell.piece ? PlaySound(captureSound) : PlaySound(moveSound);
       let catchError: number = selectedCell.movePiece(cell);
       if (catchError === 4) {
         return false;
       }
-      setSelectedCell(null);
       checkForGameEnd(false);
       if (gameMode === GameModes.ONLINE) {
         socket.emit(
@@ -206,6 +242,30 @@ const BoardComponent = () => {
           opponent
         );
       }
+      if (gameMode === GameModes.PUZZLE) {
+        if (
+          cell.x === getPuzzleMove("player")?.cellToMove.x &&
+          cell.y === getPuzzleMove("player")?.cellToMove.y &&
+          currentPlayer.color === Puzzles[currentPuzzleIndex].colorToMove
+        ) {
+          setPuzzleStage((prev: number) => {
+            return prev + 1;
+          });
+          if (
+            puzzleStage + 1 ===
+            Puzzles[currentPuzzleIndex].playerMoves.length
+          ) {
+            board.setWinner("Solved", "Solved");
+            setIsGameResultDialogOpen(true);
+          }
+        } else {
+          setGameStatus("failedMove");
+        }
+      }
+      setPrevInteractedCell((prev: any) => {
+        return [...prev, cell, selectedCell];
+      });
+      setSelectedCell(null);
       swapPlayer();
     } else {
       if (cell.piece?.color === currentPlayer?.color && !board.endGame) {
@@ -222,18 +282,20 @@ const BoardComponent = () => {
       board,
       getOppositeColor(currentPlayer)
     );
-    let myKing: Cell | void = board.findKing(board, currentPlayer.color);
-    if (((enemyKing as Cell).piece as King).isCheckMate) {
-      board.setWinner(currentPlayer.color, "Checkmate");
-    }
-    if (((myKing as Cell).piece as King).isCheckMate) {
-      board.setWinner(getOppositeColor(currentPlayer), "Checkmate");
-    }
-    if (((enemyKing as Cell).piece as King).isStaleMate) {
-      board.setWinner("Draw", "StaleMate");
-    }
-    if (((myKing as Cell).piece as King).isStaleMate) {
-      board.setWinner("Draw", "StaleMate");
+    if (gameMode !== GameModes.PUZZLE) {
+      let myKing: Cell | void = board.findKing(board, currentPlayer.color);
+      if (((enemyKing as Cell).piece as King).isCheckMate) {
+        board.setWinner(currentPlayer.color, "Checkmate");
+      }
+      if (((myKing as Cell).piece as King).isCheckMate) {
+        board.setWinner(getOppositeColor(currentPlayer), "Checkmate");
+      }
+      if (((enemyKing as Cell).piece as King).isStaleMate) {
+        board.setWinner("Draw", "StaleMate");
+      }
+      if (((myKing as Cell).piece as King).isStaleMate) {
+        board.setWinner("Draw", "StaleMate");
+      }
     }
     swapPlayer();
   }
@@ -246,23 +308,82 @@ const BoardComponent = () => {
     }
   }
 
+  function getPuzzleMove(side: "player" | "opponent") {
+    if (side === "opponent") {
+      return {
+        cell: board?.getCell(
+          Puzzles[currentPuzzleIndex].opponentMoves[puzzleStage - 1].xStart,
+          Puzzles[currentPuzzleIndex].opponentMoves[puzzleStage - 1].yStart
+        ),
+        cellToMove: board?.getCell(
+          Puzzles[currentPuzzleIndex].opponentMoves[puzzleStage - 1]
+            .xDestination,
+          Puzzles[currentPuzzleIndex].opponentMoves[puzzleStage - 1]
+            .yDestination
+        ),
+      };
+    }
+    if (side === "player") {
+      return {
+        cell: board.getCell(
+          Puzzles[currentPuzzleIndex].playerMoves[puzzleStage].xStart,
+          Puzzles[currentPuzzleIndex].playerMoves[puzzleStage].yStart
+        ),
+        cellToMove: board.getCell(
+          Puzzles[currentPuzzleIndex].playerMoves[puzzleStage].xDestination,
+          Puzzles[currentPuzzleIndex].playerMoves[puzzleStage].yDestination
+        ),
+      };
+    }
+  }
+
   useEffect(() => {
-    if (gameMode === GameModes.COMPUTER) {
-      if (currentPlayer.color !== playerColor && !board.endGame) {
-        const move = bot(board, currentPlayer);
-        let myKing: Cell | void = board.findKing(board, currentPlayer.color);
-        if (move?.cell && move.cellToMove) {
-          makeMove(move.cell, move.cellToMove);
-        } else {
-          ((myKing as Cell).piece as King).isCheckMate = true;
-          board.setWinner(getOppositeColor(currentPlayer), "Checkmate");
+    if (gameMode === GameModes.COMPUTER && board !== undefined) {
+      try {
+        if (currentPlayer.color !== playerColor && !board.endGame) {
+          const move = bot(board, currentPlayer);
+          // let myKing: Cell | void = board.findKing(board, currentPlayer.color);
+          if (move?.cell && move.cellToMove) {
+            makeMove(move.cell, move.cellToMove);
+          } else {
+            (
+              (board?.findKing(board, currentPlayer.color) as Cell)
+                .piece as King
+            ).isCheckMate = true;
+            board.setWinner(getOppositeColor(currentPlayer), "Checkmate");
+          }
+          if (
+            ((board.findKing(board, currentPlayer.color) as Cell).piece as King)
+              .isCheckMate
+          ) {
+            board.setWinner(getOppositeColor(currentPlayer), "Checkmate");
+          }
         }
-        if (((myKing as Cell).piece as King).isCheckMate) {
-          board.setWinner(getOppositeColor(currentPlayer), "Checkmate");
+      } catch (err) {}
+    }
+    if (
+      gameMode === GameModes.PUZZLE &&
+      board &&
+      gameStatus !== "failedMove" &&
+      puzzleStage !== 0
+    ) {
+      if (currentPlayer.color !== playerColor && !board.endGame) {
+        // const move = bot(board, currentPlayer);
+        if (
+          Puzzles[currentPuzzleIndex].opponentMoves.length ===
+          puzzleStage - 1
+        ) {
+          checkForGameEnd(false);
+        } else {
+          const move = getPuzzleMove("opponent");
+          if (move?.cell && move.cellToMove) {
+            makeMove(move.cell, move.cellToMove);
+            console.log(move);
+          }
         }
       }
     }
-  }, [currentPlayer, board]);
+  }, [currentPlayer, board, gameStatus]);
 
   useEffect(() => {
     highlightCells();
@@ -283,7 +404,11 @@ const BoardComponent = () => {
 
   return (
     <>
-      <div className={`board ${playerColor === Colors.BLACK ? "rotated" : ""}`}>
+      <div
+        className={`board ${playerColor === Colors.BLACK ? "rotated" : ""} ${
+          gameMode === GameModes.PUZZLE ? "puzzle-mode" : ""
+        }`}
+      >
         {/* <div className={`board`}> */}
         {board.cells.map((row: any, index: any) => (
           <React.Fragment key={index}>

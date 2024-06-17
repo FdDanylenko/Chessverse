@@ -78,6 +78,10 @@ body {
   height: 90%;
   aspect-ratio: 1 / 1;
 }
+.board.puzzle-mode {
+  height: 100%;
+  aspect-ratio: 1 / 1;
+}
 
 .board.rotated {
   transform: rotate(180deg);
@@ -118,6 +122,17 @@ body {
   background-color: black;
   border-radius: 50%;
   position: absolute;
+}
+.hinted {
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background-color: #47a17c;
+  position: absolute;
+}
+
+.cell.hinted {
+  background-color: #47a17c !important;
 }
 .availableToTake {
   width: 100%;

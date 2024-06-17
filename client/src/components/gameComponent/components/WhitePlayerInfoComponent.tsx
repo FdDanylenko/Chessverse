@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import LostPieces from "./LostPieces";
 import { Board } from "../models/Board";
 import PlayerTimer from "./WhitePlayerTimer";
@@ -7,6 +7,7 @@ import { GameDataContext } from "../contexts/gameContext";
 import { GameModes } from "../models/GameModes";
 import useAuth from "../../../hooks/useAuth";
 import { Colors } from "../models/Colors";
+import server from "../../../api/server";
 
 interface PlayerInfoComponentProps {
   board: Board;
@@ -26,6 +27,21 @@ const PlayerInfoComponent = () => {
     opponentUsername,
   } = useContext(GameDataContext);
   const { user } = useAuth();
+  const [opponentElo, setOpponentElo] = useState();
+  // useEffect(() => {
+  //   if (opponentUsername !== "Opponent") {
+  //     const handleGetUserElo = async () => {
+  //       const response = await server.post("/users/getUserData", {
+  //         username: `${opponentUsername}`,
+  //       });
+  //       try {
+  //         setOpponentElo(response.data.elo);
+  //       } catch (err) {}
+  //     };
+  //     handleGetUserElo();
+  //   }
+  // }, [opponentUsername]);
+
   return (
     <div className="info-section">
       <div className="player-info">
@@ -40,9 +56,24 @@ const PlayerInfoComponent = () => {
           }`}
         ></img>
         <div className="sub-info-box">
-          <div className="player-name">
-            {playerColor === Colors.WHITE ? user.username : opponentUsername}
+          <div
+            className="player-name"
+            style={{ display: "inline-block", width: "fit-content" }}
+          >
+            {playerColor === Colors.WHITE
+              ? user.username
+              : opponentUsername || "Opponent"}
           </div>
+          {gameMode === GameModes.ONLINE && (
+            <div
+              className="player-name"
+              style={{ display: "inline-block", width: "fit-content" }}
+            >
+              {playerColor === Colors.WHITE
+                ? `[${user.elo}]`
+                : `[???]` || "500"}
+            </div>
+          )}
           <LostPieces pieces={board.blackLostPieces} />
         </div>
       </div>

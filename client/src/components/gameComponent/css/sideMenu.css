@@ -32,6 +32,21 @@
   width: 20%;
   border-radius: 5px;
 }
+.game-nav-btn:hover {
+  background-color: #403f3d;
+}
+.game-nav-btn.wide {
+  font-size: 18px;
+  font-weight: 700;
+  flex: 1;
+}
+.game-nav-btn.red {
+  color: #ffffff;
+  background-color: #e02828;
+}
+.game-nav-btn.red:hover {
+  background-color: #f73e2c;
+}
 .history-box-item {
   display: flex;
   justify-content: space-between;

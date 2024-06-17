@@ -15,7 +15,7 @@ interface Iteration {
 }
 
 const HistoryComponent = () => {
-  const { board } = useContext(GameDataContext);
+  const { board, setUpPuzzle, puzzleStage } = useContext(GameDataContext);
   const lastElementRef = useRef<HTMLDivElement>(null);
   const [moves, setMoves] = useState<Iteration[]>([]);
 
@@ -48,8 +48,13 @@ const HistoryComponent = () => {
         });
       }
     }
-    console.log(moves);
   }, [board.whiteMoves.length, board.blackMoves.length]);
+
+  useEffect(() => {
+    if (!board.whiteMoves.length) {
+      setMoves([]);
+    }
+  }, [board.whiteMoves.length]);
 
   const scrollToLastElement = useCallback(() => {
     lastElementRef.current?.scrollIntoView({ behavior: "smooth" });

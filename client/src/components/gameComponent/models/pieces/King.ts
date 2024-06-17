@@ -38,7 +38,8 @@ export class King extends Piece {
         target !== Threat &&
         target.x === this.checkFromWho.x &&
         Threat?.piece?.canMoveDowngraded(this.cell) &&
-        Threat.piece.name !== PiecesNames.BISHOP
+        Threat.piece.name !== PiecesNames.BISHOP &&
+        Threat.piece.name !== PiecesNames.PAWN
       ) {
         return true;
       }
@@ -47,7 +48,8 @@ export class King extends Piece {
         target !== Threat &&
         target.y === this.checkFromWho.y &&
         Threat?.piece?.canMoveDowngraded(this.cell) &&
-        Threat.piece.name !== PiecesNames.BISHOP
+        Threat.piece.name !== PiecesNames.BISHOP &&
+        Threat.piece.name !== PiecesNames.PAWN
       ) {
         return true;
       }
@@ -58,7 +60,8 @@ export class King extends Piece {
         Math.abs(target.x - (Threat as Cell).x) ===
           Math.abs(target.y - (Threat as Cell).y) &&
         Threat?.piece?.canMoveDowngraded(this.cell) &&
-        Threat.piece.name !== PiecesNames.ROOK
+        Threat.piece.name !== PiecesNames.ROOK &&
+        Threat.piece.name !== PiecesNames.PAWN
       ) {
         return true;
       }
